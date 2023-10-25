@@ -132,13 +132,13 @@ Socket socket = listener.accept();
 ```
 
 <details><summary>ServerSocket class</summary>
-
+<div>
 ServerSocket은 Java에서 서버 측 네트워크 프로그래밍을 구현하는 데 사용되는 클래스입니다.</br>
 ServerSocket 클래스는 서버 측에서 사용됩니다. ServerSocket은 클라이언트의 연결을 수락하면 새로운 Socket 객체를 반환합니다. 이 Socket을 사용하여 클라이언트와의 데이터 통신을
 처리합니다.</br>
 ServerSocket은 클라이언트로부터의 연결 요청을 수락하고, 클라이언트와의 통신을 위한 소켓 연결을 생성하는 데 사용됩니다.</br>
 ServerSocket 클래스는 Socket 클래스를 직접 상속하지 않으며, 서로 상속 관계에 있지 않습니다
-
+</div>
 
 </details>
 
