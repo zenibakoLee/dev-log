@@ -58,7 +58,79 @@ Start line은 요청/응답의 형태가 다르다.
 2. 위와 다르게 꼭 사람이 읽을 수 있는 텍스트 형태일 필요는 없다. 바이너리 등 가능.
 3. 하나가 아니라 여럿일 수도 있다. 파일 업로드 등을 위해 쓰이는 multipart/form-data가 대표적.
 
-<details>
+<details>조
+<details><summary>multipart/form-data</summary>
+multipart/form-data는 웹 폼 데이터를 웹 서버로 전송하는 데 사용되는 인코딩 방식 중 하나입니다. <br>
+이 방식은 파일 업로드와 같이 바이너리 데이터를 함께 전송해야 하는 경우에 주로 사용됩니다. 주요 특징은 다음과 같습니다:
+
+1. 바이너리 데이터 전송: multipart/form-data를 사용하면 텍스트 데이터 외에도 이미지, 동영상, 오디오 및 기타 바이너리 데이터를 전송할 수 있습니다. 이를 통해 파일 업로드와 같은 작업을 수행할
+   수 있습니다.
+
+2. 인코딩: multipart/form-data는 폼 데이터를 멀티파트(Multipart) 메시지로 인코딩하여 전송합니다. 이 메시지는 각 파트(part)로 구성되며, 각 파트는 텍스트나 바이너리 데이터로 이루어질
+   수 있습니다.
+
+3. Boundary: multipart/form-data 메시지는 각 파트를 구분하기 위한 구분자(boundary)를 사용합니다. 이 구분자는 파트의 시작과 끝을 식별하는 역할을 합니다.
+
+4. 서버 처리: 웹 서버는 multipart/form-data 메시지를 파싱하여 각 파트의 데이터를 추출하고 처리합니다. 이러한 처리를 통해 파일 업로드 및 다른 데이터 전송 작업을 수행할 수 있습니다.
+
+5. 웹 프레임워크 지원: 대부분의 웹 프레임워크 및 라이브러리는 multipart/form-data를 처리하고 파일 업로드를 지원합니다. 이러한 도구를 사용하면 웹 애플리케이션에서 이러한 데이터를 쉽게 다룰 수
+   있습니다.
+
+multipart/form-data를 사용하는 예시로 HTML 폼 요소를 통해 파일을 업로드할 때, <form> 요소의 enctype 속성을 "multipart/form-data"로 설정하여 해당 폼이 이 인코딩
+방식을 사용하도록 지정할 수 있습니다. 아래는 간단한 HTML 폼의 예시입니다
+
+```html
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    <input type="file" name="fileToUpload">
+    <input type="submit" value="Upload File">
+</form>
+
+```
+
+위의 예제에서 "enctype"가 "multipart/form-data"로 설정되었으므로 이 폼은 파일 업로드를 지원하며, 웹 서버는 multipart/form-data로 전송된 데이터를 파싱하여 파일 업로드를
+처리합니다.
+
+```java
+//client
+  LinkedMultiValueMap<String, Object> body=new LinkedMultiValueMap<>();
+
+        // 주의! spring의 org.springframework.core.io.Resource 클래스 타입을 사용함!
+        // java.io.File 사용하면 안된다!!!
+        // new UrlResource("file:" + "D:/uploadFile/123.jpg"); 대체가능
+        Resource resource1=new FileSystemResource("D:/uploadFile/123.jpg");
+
+        // new UrlResource("file:" + "D:/uploadFile/testImg.jpg");
+        Resource resource2=new FileSystemResource("D:/uploadFile/testImg.jpg");
+
+        body.add("files",resource);
+        body.add("files",resource2);
+        // body.add("wow", "this is amazing"); // 문자열도 전송 가능하다 😁
+
+        HttpHeaders headers=new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+        HttpEntity<LinkedMultiValueMap<String, Object>>httpEntity
+        =new HttpEntity<>(body,headers);
+
+        String serverUrl="http://localhost:8080/test/multipart";
+
+        ResponseEntity<JsonNode> postForEntity
+        =REST_TEMPLATE.postForEntity(serverUrl,httpEntity,JsonNode.class);
+//sever
+@PostMapping("/test/multipart")
+public ResponseEntity<Map<String, String>>testMultipart(List<MultipartFile> files){
+        files.forEach(file->{
+        System.out.println(file.getContentType());
+        System.out.println(file.getOriginalFilename());
+        });
+        HashMap<String, String> resultMap=new HashMap<>();
+        resultMap.put("result","success");
+        return ResponseEntity.ok(resultMap);
+        }
+```
+
+</details>
 
 <summary>HTTP Method & Status Code</summary>
 HTTP Method (요청)
@@ -142,62 +214,3 @@ Java에서는 키보드 입력, 화면 출력, 파일 입출력 등과 마찬가
 
 ![URI/URL](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b143a39-0445-4906-baca-25633217e5c0_1539x1536.jpeg)
 
-<details>
-
-<summary>HTTP 클라이언트</summary>
--CONNECT</br>
-호스트는 IP 주소 또는 도메인 이름을 사용할 수 있다. <br />
-도메인의 경우 DNS를 활용하기 때문에 제대로 하려면 복잡해질 수 있지만, 알아서 처리해 준다.<br />
-HTTP의 기본 포트 번호는 80.</br>
-IP 주소와 포트 번호만 알면, 서버에 접속할 수 있다.</br>
-Socket socket = new Socket(host, port);</br>
-
--REQUEST</br>
-요청 메시지를 만들고, TCP로 전송하면 된다.</br>
-
-```
-GET http://example.com/ HTTP/1.1
-(빈 줄)
-```
-
-소켓에서 Output Stream을 얻어서 쓸 수 있다.</br>
-그러나 Byte변환없이 문자열을 바로 전송하고 싶다면 Writer(OutputStreamWriter)를 쓴다(추천).</br>
-⚠️ 내부적으로 버퍼가 있기 때문에 flush를 잊지 않아야 한다.
-
--RESPONSE</br>
-소켓에서 Input Stream을 얻어서 쓸 수 있다.</br>
-Byte 배열을 준비하고, 여기로 데이터를 읽어온다.</br>
-응답 데이터가 우리가 준비한 배열보다 클 수도 있는데, 이 경우엔 반복해서 여러 번 읽는 작업이 필요하다. </br>
-이 경우엔 우리가 준비한 배열이 Chunk(한번에 처리하는 단위)가 된다.
-
-```
-byte[] bytes = new byte[1_000_000];
-int size = inputStream.read(bytes);
-```
-
-System.out.println(text);
-실제 데이터 크기만큼 Byte 배열을 자르고, 문자열로 변환해 출력한다.
-
-```
-byte[] data = Arrays.copyOf(bytes, size);
-String text = new String(data);
-```
-
-요청과 마찬가지로 Reader(InputStreamReader)를 쓰면 훨씬 편하다(추천).
-
--CLOSE
-
-```
-socket.close();
-```
-
-Socket은 Closeable이기 때문에 try-with-resources를 써도 된다.
-
-```
-try (Socket socket = new Socket(host, port)) {
-	// Request
-	// Response
-}
-```
-
-</details>

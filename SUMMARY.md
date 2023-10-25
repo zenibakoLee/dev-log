@@ -3,12 +3,17 @@
 * [👋 Welcome!](README.md)
 
 ## About us
-* [HTTP](about-us/values.md)
-* [🚀 Vision, Mission & Focus](about-us/vision-mission-and-focus/README.md)
-  * [Vision](about-us/vision-mission-and-focus/vision.md)
-  * [Mission](about-us/vision-mission-and-focus/mission.md)
-  * [Focus](about-us/vision-mission-and-focus/focus.md)
-* [💖 Values](about-us/values.md)
+
+* [HTTP](about-us/Http.md)
+* [Java](about-us/java/README.md)
+    * [Vision](about-us/java/vision.md)
+    * [Mission](about-us/java/mission.md)
+    * [server](about-us/java/server.md)
+* [Spring](about-us/spring/README.md)
+    * [Vision](about-us/java/vision.md)
+    * [Mission](about-us/java/mission.md)
+    * [server](about-us/java/server.md)
+* [💖 Values](about-us/Http.md)
 
 ## Team
 
