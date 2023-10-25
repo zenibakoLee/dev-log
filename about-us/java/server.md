@@ -1,6 +1,6 @@
 # Server
 
-<details><summary>HTTP 클라이언트</summary>
+<details><summary>HTTP 클라이언트 구현</summary>
 
 -CONNECT</br>
 호스트는 IP 주소 또는 도메인 이름을 사용할 수 있다. <br />
@@ -12,11 +12,6 @@ Socket socket = new Socket(host, port);</br>
 ### REQUEST</br>
 
 요청 메시지를 만들고, TCP로 전송하면 된다.</br>
-<details><summary>Java text blocks(from Java13)</summary>여러 줄 문자열: Text blocks를 사용하면 여러 줄에 걸쳐 긴 문자열을 만들 수 있으며, 줄 바꿈 문자와 공백을 직접 지정할 필요가 없습니다.
-
-줄 바꿈 및 들여쓰기: Text blocks 내에서 줄 바꿈과 들여쓰기는 그대로 유지되므로 가독성이 향상됩니다.
-
-문자열 보간: Text blocks 내에서 ${변수}를 사용하여 문자열 보간(변수 삽입)이 가능합니다.</details>
 
 ```
 String message = """
@@ -45,28 +40,6 @@ String message = "" +
 Byte 배열을 준비하고, 여기로 데이터를 읽어온다.</br>
 응답 데이터가 우리가 준비한 배열보다 클 수도 있는데, 이 경우엔 반복해서 여러 번 읽는 작업이 필요하다. </br>
 이 경우엔 우리가 준비한 배열이 Chunk(한번에 처리하는 단위)가 된다.
-
-<details>
-<summary>Java InputStream과 OutputStream </summary> 
-InputStream과 OutputStream은 Java에서 바이트 기반의 입출력 작업을 수행하기 위한 중요한 추상 클래스입니다. 이러한 클래스는 입출력 스트림을 다룰 때 사용되며, 파일, 네트워크 연결, 메모리
-버퍼 등 다양한 데이터 소스 및 대상과 상호작용하는 데 사용됩니다.<br>
- Java의 입출력 작업에서 중요한 역할을 하며, 데이터의 읽기와 쓰기, 버퍼링, 바이트 배열, 문자 인코딩 등을 처리하는 데 유용합니다. 
-
-- InputStream은 바이트 단위로 데이터를 읽어오는 데 사용되는 추상 클래스입니다.
-  주로 파일, 네트워크 연결, 시스템 입력 스트림 등에서 데이터를 읽을 때 사용됩니다.
-- InputStream의 주요 메서드 중 일부는 read()로 시작하며, 이를 사용하여 데이터를 읽고 반환합니다. 예를 들어, read() 메서드를 사용하여 파일에서 한 바이트씩 데이터를 읽을 수 있습니다
-
-```java
-InputStream inputStream=new FileInputStream("파일경로");
-        int data=inputStream.read();
-
-``` 
-
-- OutputStream은 바이트 단위로 데이터를 쓰는 데 사용되는 추상 클래스입니다.
-  주로 파일, 네트워크 연결, 시스템 출력 스트림 등에 데이터를 쓸 때 사용됩니다.
-- OutputStream의 주요 메서드 중 일부는 write()로 시작하며, 이를 사용하여 데이터를 쓰고 저장합니다. 예를 들어, write() 메서드를 사용하여 파일에 바이트 데이터를 쓸 수 있습니다.
-
-</details>
 
 ```
 InputStream inputStream = socket.getInputStream();
@@ -131,17 +104,6 @@ Socket socket = listener.accept();
 
 ```
 
-<details><summary>ServerSocket class</summary>
-<div>
-ServerSocket은 Java에서 서버 측 네트워크 프로그래밍을 구현하는 데 사용되는 클래스입니다.</br>
-ServerSocket 클래스는 서버 측에서 사용됩니다. ServerSocket은 클라이언트의 연결을 수락하면 새로운 Socket 객체를 반환합니다. 이 Socket을 사용하여 클라이언트와의 데이터 통신을
-처리합니다.</br>
-ServerSocket은 클라이언트로부터의 연결 요청을 수락하고, 클라이언트와의 통신을 위한 소켓 연결을 생성하는 데 사용됩니다.</br>
-ServerSocket 클래스는 Socket 클래스를 직접 상속하지 않으며, 서로 상속 관계에 있지 않습니다
-</div>
-
-</details>
-
 ⚠️ 마지막 줄에 Newline(\n)을 넣는 걸 잊지 말자.</br>
 제대로 하려면 Content-Type과 Content-Length를 더해주는 게 좋다.</br>
 ⚠️ Content-Length로 정확한 크기를 알 수 있기 때문에 마지막 줄에 Newline(\n)을 넣지 않아도 된다.
@@ -166,6 +128,88 @@ String body="Hello, world!";
 - [Non-blocking_I/O_(Java)](https://en.wikipedia.org/wiki/Non-blocking_I/O_(Java))
 
 내부적으로 NIO를 사용하는 고수준 HTTP 서버 API.
+
+```java
+//서버 객체 준비
+InetSocketAddress address=new InetSocketAddress(8080);
+        int backlog=0;
+        HttpServer httpServer=HttpServer.create(address,backlog);
+//URL(정확히는 path)에 핸들러 지정
+        httpServer.createContext("/",(exchange)->{
+        // TODO
+        });
+//Listen
+        httpServer.start();
+```
+
+### Request
+
+```java
+String method=exchange.getRequestMethod();
+        System.out.println(method);
+
+        URI uri=exchange.getRequestURI();
+        String path=uri.getPath();
+        System.out.println(path);
+
+        Headers headers=exchange.getRequestHeaders();
+        for(String key:headers.keySet()){
+        System.out.println(key+": "+headers.get(key));
+        }
+
+        InputStream inputStream=exchange.getRequestBody();
+        String body=new String(inputStream.readAllBytes());
+        System.out.println(body);
+```
+
+### Response
+
+```java
+String body="Hello, world!";
+        byte[]bytes=body.getBytes();
+        exchange.sendResponseHeaders(200,bytes.length);
+        OutputStream outputStream=exchange.getResponseBody();
+        outputStream.write(bytes);
+        outputStream.flush();
+```
+
+</details>
+<details><summary>Java text blocks(from Java13)</summary>여러 줄 문자열: Text blocks를 사용하면 여러 줄에 걸쳐 긴 문자열을 만들 수 있으며, 줄 바꿈 문자와 공백을 직접 지정할 필요가 없습니다.
+
+줄 바꿈 및 들여쓰기: Text blocks 내에서 줄 바꿈과 들여쓰기는 그대로 유지되므로 가독성이 향상됩니다.
+
+문자열 보간: Text blocks 내에서 ${변수}를 사용하여 문자열 보간(변수 삽입)이 가능합니다.</details>
+<details><summary>ServerSocket class</summary>
+
+ServerSocket은 Java에서 서버 측 네트워크 프로그래밍을 구현하는 데 사용되는 클래스입니다.</br>
+ServerSocket 클래스는 서버 측에서 사용됩니다. ServerSocket은 클라이언트의 연결을 수락하면 새로운 Socket 객체를 반환합니다. 이 Socket을 사용하여 클라이언트와의 데이터 통신을
+처리합니다.</br>
+ServerSocket은 클라이언트로부터의 연결 요청을 수락하고, 클라이언트와의 통신을 위한 소켓 연결을 생성하는 데 사용됩니다.</br>
+ServerSocket 클래스는 Socket 클래스를 직접 상속하지 않으며, 서로 상속 관계에 있지 않습니다
+
+
+</details>
+<details>
+<summary>Java InputStream과 OutputStream </summary> 
+InputStream과 OutputStream은 Java에서 바이트 기반의 입출력 작업을 수행하기 위한 중요한 추상 클래스입니다. 이러한 클래스는 입출력 스트림을 다룰 때 사용되며, 파일, 네트워크 연결, 메모리
+버퍼 등 다양한 데이터 소스 및 대상과 상호작용하는 데 사용됩니다.<br>
+ Java의 입출력 작업에서 중요한 역할을 하며, 데이터의 읽기와 쓰기, 버퍼링, 바이트 배열, 문자 인코딩 등을 처리하는 데 유용합니다. 
+
+- InputStream은 바이트 단위로 데이터를 읽어오는 데 사용되는 추상 클래스입니다.
+  주로 파일, 네트워크 연결, 시스템 입력 스트림 등에서 데이터를 읽을 때 사용됩니다.
+- InputStream의 주요 메서드 중 일부는 read()로 시작하며, 이를 사용하여 데이터를 읽고 반환합니다. 예를 들어, read() 메서드를 사용하여 파일에서 한 바이트씩 데이터를 읽을 수 있습니다
+
+```java
+InputStream inputStream=new FileInputStream("파일경로");
+        int data=inputStream.read();
+
+``` 
+
+- OutputStream은 바이트 단위로 데이터를 쓰는 데 사용되는 추상 클래스입니다.
+  주로 파일, 네트워크 연결, 시스템 출력 스트림 등에 데이터를 쓸 때 사용됩니다.
+- OutputStream의 주요 메서드 중 일부는 write()로 시작하며, 이를 사용하여 데이터를 쓰고 저장합니다. 예를 들어, write() 메서드를 사용하여 파일에 바이트 데이터를 쓸 수 있습니다.
+
+</details>
 <details><summary>Socket과 HttpServer클래스 서버 리스닝 방식에 따른 차이</summary>
 
 Socket을 사용하는 방식은 저수준의 제어와 다양한 프로토콜을 지원하므로 유연성이 높지만 복잡하며,<br>
@@ -218,51 +262,5 @@ Java의 HttpServer 클래스는 논블로킹(Non-blocking) I/O를 사용하여 H
 
 HttpServer 클래스를 사용하면 이러한 논블로킹 I/O 원칙을 기반으로 간단하게 HTTP 서버를 작성할 수 있습니다. 이는 높은 동시성을 가진 웹 애플리케이션을 만드는 데 유용하며, 블로킹 I/O를 사용하는
 전통적인 웹 서버보다 성능과 확장성이 더 뛰어날 수 있습니다.
-
-</details>
-
-```java
-//서버 객체 준비
-InetSocketAddress address=new InetSocketAddress(8080);
-        int backlog=0;
-        HttpServer httpServer=HttpServer.create(address,backlog);
-//URL(정확히는 path)에 핸들러 지정
-        httpServer.createContext("/",(exchange)->{
-        // TODO
-        });
-//Listen
-        httpServer.start();
-```
-
-### Request
-
-```java
-String method=exchange.getRequestMethod();
-        System.out.println(method);
-
-        URI uri=exchange.getRequestURI();
-        String path=uri.getPath();
-        System.out.println(path);
-
-        Headers headers=exchange.getRequestHeaders();
-        for(String key:headers.keySet()){
-        System.out.println(key+": "+headers.get(key));
-        }
-
-        InputStream inputStream=exchange.getRequestBody();
-        String body=new String(inputStream.readAllBytes());
-        System.out.println(body);
-```
-
-### Response
-
-```java
-String body="Hello, world!";
-        byte[]bytes=body.getBytes();
-        exchange.sendResponseHeaders(200,bytes.length);
-        OutputStream outputStream=exchange.getResponseBody();
-        outputStream.write(bytes);
-        outputStream.flush();
-```
 
 </details>
