@@ -85,7 +85,7 @@ try (Socket socket = new Socket(host, port)) {
 ```
 
 </details>
-<details><summary>HTTP 서버</summary>
+<details><summary>HTTP 서버 구현</summary>
 
 ```
 int port = 8080;

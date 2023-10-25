@@ -6,13 +6,13 @@
 
 * [HTTP](about-us/Http.md)
 * [Java](about-us/java/README.md)
+    * [server](about-us/java/server.md)
     * [Vision](about-us/java/vision.md)
     * [Mission](about-us/java/mission.md)
-    * [server](about-us/java/server.md)
 * [Spring](about-us/spring/README.md)
     * [Vision](about-us/java/vision.md)
     * [Mission](about-us/java/mission.md)
-    * [server](about-us/java/server.md)
+
 * [💖 Values](about-us/Http.md)
 
 ## Team

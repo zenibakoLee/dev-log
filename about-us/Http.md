@@ -129,7 +129,13 @@ Java에서는 키보드 입력, 화면 출력, 파일 입출력 등과 마찬가
 
 </details>
 
+<details><summary>URI/URL/URN</summary>
+
 ![URI/URL](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b143a39-0445-4906-baca-25633217e5c0_1539x1536.jpeg)
+![URI/URL/URN](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b143a39-0445-4906-baca-25633217e5c0_1539x1536.jpeg)
+
+</details>
+
 
 <details><summary>쿠키와 세션</summary>-저장 위치: HTTP 쿠키: 쿠키는 클라이언트 측에 저장됩니다. 즉, 브라우저가 사용자의 컴퓨터에 쿠키를 저장하고,
    이를 웹 서버에 전달합니다.
