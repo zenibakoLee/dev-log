@@ -130,12 +130,71 @@ Java에서는 키보드 입력, 화면 출력, 파일 입출력 등과 마찬가
 </details>
 
 <details><summary>URI/URL/URN</summary>
+리소스를 식별하는 방법.
+
+식별할 때는 식별자(Identifier = ID)를 활용.
+
+URI은 크게 둘로 나뉨:
+
+1. URL(Uniform Resource Locator) → 리소스의 위치. 위치 변경에 취약함. (ex. 배송지)
+2. URN(Uniform Resource Name) → 리소스의 “유니크”한 이름. 사실상 쓰이지 않음. (ex. 주민등록번호)
+
+URI라고 쓰는 건 대부분 URL을 의미함. URN 쓰는 걸 거의 본 적이 없음. 따라서 URI와 URL을 크게 구별하지 않고 동의어에 가깝게 사용함.
 
 ![URI/URL](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b143a39-0445-4906-baca-25633217e5c0_1539x1536.jpeg)
 ![URI/URL/URN](https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b143a39-0445-4906-baca-25633217e5c0_1539x1536.jpeg)
 
 </details>
+<details><summary>Collection Pattern in URI design</summary>
 
+1. 그룹화 및 복수형 사용: 여러 리소스를 하나의 그룹으로 묶어 복수형으로 표현합니다. 예를 들어, 게시물을 모두 "posts"라는 그룹으로 묶어서 표현합니다. 이렇게 하면 게시물 목록을 나타내는 URI가 "
+   /posts"로 표현됩니다.
+
+2. 요소와 컬렉션 구분: 개별 리소스를 나타내는 URI와 해당 리소스 그룹을 나타내는 URI를 구분합니다. 개별 게시물의 URI는 "/posts/{id}" 형태로 표현되고, 컬렉션은 "/posts"로 표현됩니다.
+
+3. 하위 리소스: 특정 리소스의 하위 리소스를 나타내기 위해 디렉터리 구조처럼 사용할 수 있습니다. 예를 들어, 게시물의 댓글을 표현할 때 "/posts/{post_id}/comments"와 같이 사용하며, 댓글의
+   개별 URI는 "/posts/{post_id}/comments/{id}"와 같이 표현됩니다.
+
+4. 편집 페이지: 리소스의 편집 페이지를 나타낼 때도 URI를 사용하며, "/posts/{id}/edit"와 같이 표현할 수 있습니다. 그러나 REST API의 경우 편집 페이지를 표현할 필요가 없는 경우도
+   있습니다.
+
+</details>
+<details><summary>MIME (content,media) type</summary>
+
+MIME (Multipurpose Internet Mail Extensions) 타입은 인터넷에서 전자 메일 및 웹에서 다양한 미디어 유형을 식별하고 나타내는 데 사용되는 표준화된 방법입니다. MIME 타입은
+데이터의 형식을 정의하며, 클라이언트 및 서버 간에 어떤 종류의 데이터가 전송되는지 알려줍니다. MIME 타입은 HTTP, 이메일 시스템 및 다른 네트워크 프로토콜에서 널리 사용됩니다.
+
+MIME 타입은 보통 다음과 같은 형식을 가집니다:
+
+```
+type/subtype
+```
+
+여기서:
+
+- `type`: 주요 미디어 유형을 나타내며, 예를 들어 "text", "image", "audio", "video", "application" 등이 있습니다.
+- `subtype`: 주요 유형 내에서 미디어의 하위 유형을 나타냅니다. 예를 들어 "plain" (평문 텍스트), "html" (HTML 문서), "jpeg" (JPEG 이미지) 등이 있습니다.
+
+MIME 타입의 몇 가지 예시:
+
+- `text/plain`: 평문 텍스트, E-mail에서 자주 사용
+- `text/html`: HTML 문서, 일반적인 웹 문서
+- `image/jpeg`: JPEG 이미지
+- `application/pdf`: PDF 문서
+- `audio/mpeg`: MP3 오디오 파일
+- `video/mp4`: MP4 동영상 파일
+- `application/json`: JSON 데이터, 자기서술적이기에 굉장히 어렵다.
+- `application/xml`: XML 데이터, 범용. 자기서술적이기에 상대적으로 어렵다.
+- `text/css`
+- `text/javascript`
+- `application/atom+xml`
+- `application/dns+json`
+
+HTTP Headers에 `Content-Type` 속성으로 전달함.
+[IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)에 등록된 목록을 참고하자.
+
+
+</details>
 
 <details><summary>쿠키와 세션</summary>-저장 위치: HTTP 쿠키: 쿠키는 클라이언트 측에 저장됩니다. 즉, 브라우저가 사용자의 컴퓨터에 쿠키를 저장하고,
    이를 웹 서버에 전달합니다.
@@ -220,5 +279,71 @@ public ResponseEntity<Map<String, String>>testMultipart(List<MultipartFile> file
         return ResponseEntity.ok(resultMap);
         }
 ```
+
+</details>
+<details><summary>CRUD & CQS</summary>
+
+데이터에 대해 취하는 모든 기능은 4가지로 나눌 수 있다.
+
+1. CREATE
+2. READ
+3. UPDATE
+4. DELETE
+
+동작에 의한 상태의 변화 유무를 기준으로 나누면
+
+- Command => Create,Update,Delete: 상태가 변함. 안전하지 않음.
+- Query => Read : 상태가 변하지 않음. 안전함. 분산,캐시등이 수월함.
+
+#### HTTP Method
+
+Collection Pattern과 HTTP Method를 이용해 CRUD를 표현할 수 있다.
+
+1. GET → Read
+2. POST → Create
+3. PUT, PATCH → Update
+4. DELETE → Delete
+
+#### 게시물
+
+1. `GET /posts` → 게시물 목록 (Read, Collection) → List (습관적인 표현 중 하나)
+2. `GET /posts/{id}` → 게시물 상세 (Read, Element) → Detail (습관적인 표현 중 하나)
+3. `POST /posts` → 게시물 생성 (Create) → Post ID는 서버에서 생성함.
+4. `PUT 또는 PATCH /posts/{id}` → 게시물 수정 (Update, Element)
+5. `DELETE /posts/{id}` → 게시물 삭제 (Delement, Element)
+
+종종 Bulk update, Bulk delete 등을 하기도 함. 이럴 때는 Collection을 활용하고, API 스펙 문서에 정확히 기록.
+
+#### 댓글
+
+그냥 바로 comments로 시작하는 경우:
+
+1. `GET /comments` → 전체 댓글 목록
+2. `GET /comments?post_id={post_id}` → 특정 게시물에 대한 댓글 목록
+3. `GET /comments/{id}` → 댓글 상세
+4. `POST /comments` → 댓글 생성 ⇒ 어떤 게시물에 대해? → Body에 Post ID 정보를 담아줘야 함.
+5. `POST /comments?post_id={post_id}` → 특정 게시물에 대한 댓글 생성
+6. `PUT 또는 PATCH /comments/{id}` → 댓글 수정
+7. `DELETE /comments/{id}` → 댓글 삭제
+
+특정 게시물 아래로 표현하는 경우:
+
+1. `GET /posts/{post_id}/comments` → 특정 게시물에 대한 댓글 목록
+2. `GET /posts/{post_id}/comments/{id}` → 특정 게시물에 달린 특정 댓글 상세
+3. `POST /posts/{post_id}/comments` → 특정 게시물에 대한 댓글 작성
+4. `PUT 또는 PATCH /posts/{post_id}/comments/{id}` → 특정 게시물에 달린 특정 댓글 수정
+5. `DELETE /posts/{post_id}/comments/{id}` → 특정 게시물에 달린 특정 댓글 삭제
+
+#### 로그인/로그아웃
+
+로그인과 로그아웃을 어떻게 리소스로 표현할 수 있을까? 이럴 때는 추상적인 개념인 “세션”을 도입하곤 한다.
+
+1. `POST /session` → 세션 생성 = 로그인
+2. `DELETE /session` → 세션 파괴 = 로그아웃
+
+덤으로…
+
+1. `GET /session` → 세션 확인 → 내 정보 확인?
+2. `GET /users/me` → User ID를 me라고 쓰면, 현재 사용자의 User ID로 처리하게 정하고, API 스펙 문서에 기록.
 
 </details>

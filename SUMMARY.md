@@ -2,13 +2,15 @@
 
 * [👋 Welcome!](README.md)
 
-## About us
+## Index
 
 * [HTTP](about-us/Http.md)
 * [Java](about-us/java/README.md)
     * [Server](about-us/java/server.md)
     * [Annotation](about-us/java/annotation.md)
-    * [Mission](about-us/java/mission.md)
+
+[//]: # (    * [Mission]&#40;about-us/java/mission.md&#41;)
+
 * [Spring](about-us/spring/README.md)
     * [SpringBoot](about-us/spring/springBoot.md)
     * [Annotation](about-us/spring/annotation.md)
@@ -18,20 +20,31 @@
     * [MVC](about-us/architecture/mvc.md)
     * [Rest](about-us/architecture/rest.md)
 
-* [💖 Values](about-us/Http.md)
+[//]: # (* [💖 Values]&#40;about-us/Http.md&#41;)
 
-## Team
+[//]: # (## Team)
 
-* [👋 Meet the Team!](team/meet-the-team.md)
+[//]: # ()
 
-## Collaborating
+[//]: # (* [👋 Meet the Team!]&#40;team/meet-the-team.md&#41;)
 
-* [🤝 How we Work Together](collaborating/how-we-work-together.md)
-* [📅 Meetings](collaborating/meetings.md)
+[//]: # ()
 
-## Policies
+[//]: # (## Collaborating)
 
-* [🌴 Requesting Time Off](policies/requesting-time-off.md)
+[//]: # ()
+
+[//]: # (* [🤝 How we Work Together]&#40;collaborating/how-we-work-together.md&#41;)
+
+[//]: # (* [📅 Meetings]&#40;collaborating/meetings.md&#41;)
+
+[//]: # ()
+
+[//]: # (## Policies)
+
+[//]: # ()
+
+[//]: # (* [🌴 Requesting Time Off]&#40;policies/requesting-time-off.md&#41;)
 
 ***
 

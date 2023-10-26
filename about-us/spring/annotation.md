@@ -1,4 +1,4 @@
-# Annotations
+# Annotation
 
 Spring Framework에서 어노테이션(Annotation)은 애플리케이션의 구성, 동작 및 관계를 정의하는 데 사용되는 메타데이터의 일종입니다.Spring Annotations은 주로 스프링 컴포넌트(빈)를
 정의하거나 빈의 의존성을 주입하는 데 사용됩니다. Spring Annotations은 스프링의 IoC(Inversion of Control) 및 DI(Dependency Injection) 기능을 활용하기 위해

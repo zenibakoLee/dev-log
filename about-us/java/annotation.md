@@ -1,6 +1,5 @@
-Grammar
+# Annotation
 
-<details><summary>Annotation</summary>
 Java Annotations은 클래스, 메서드, 변수 등의 요소에 메타데이터를 추가하여 프로그램 동작을 변경하거나 기능을 확장합니다.
 자바 어노테이션은 클래스 파일에 임베디드되어 컴파일러에 의해 생성된 후 자바 가상머신에 포함되어 작동합니다.
 
@@ -40,5 +39,5 @@ public @interface MyAnnotation {
 }
 ```
 
-</details>
+
 
