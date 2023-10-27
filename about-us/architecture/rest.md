@@ -106,7 +106,16 @@ HTTP 프로토콜을 기반으로 하여 쉽게 이해하고 사용할 수 있�
 
 </details>
 <details><summary>학습 자료</summary>
+### Web
 
 - https://www.youtube.com/watch?v=RP_f5dMoHFc
 - [https://blog.npcode.com/2017/03/02/바쁜-개발자들을-위한-rest-논문-요약/](https://blog.npcode.com/2017/03/02/%eb%b0%94%ec%81%9c-%ea%b0%9c%eb%b0%9c%ec%9e%90%eb%93%a4%ec%9d%84-%ec%9c%84%ed%95%9c-rest-%eb%85%bc%eb%ac%b8-%ec%9a%94%ec%95%bd/)
-- [https://blog.npcode.com/2017/04/03/rest의-representation이란-무엇인가/](https://blog.npcode.com/2017/04/03/rest%ec%9d%98-representation%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80/)</details>
+- [https://blog.npcode.com/2017/04/03/rest의-representation이란-무엇인가/](https://blog.npcode.com/2017/04/03/rest%ec%9d%98-representation%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80/)
+- [카카오 REST api 문서](https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api)
+
+### 서적
+
+- [RESTful Web API](http://aladin.kr/p/zGUKk)
+- [웹 API 디자인](http://aladin.kr/p/byC7Y)
+
+</details>
