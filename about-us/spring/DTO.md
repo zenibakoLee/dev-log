@@ -29,7 +29,7 @@ Data Transfer Object
 REST에선 표현을 다뤄야 하고, 이를 위해 데이터를 담는 것 외엔 사실상 아무 것도 하지 않아서 제대로 된 객체라고 볼 수 없는 (하지만 Java에선 어쩔 수 없이 class를 활용해서 쓸 수 밖에 없는) 특별한
 객체를 사용하게 된다.
 
-- [“무기력한 도메인 모델” 안티패턴](https://martinfowler.com/bliki/AnemicDomainModel.html)
+- [“무기력한 도메인 모델” 안티패턴](../architecture/anemicDomainModel.md)
 
 </details>
 
