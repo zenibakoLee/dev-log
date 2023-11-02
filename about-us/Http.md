@@ -5,28 +5,6 @@
 **GitBook tip:** 하이퍼텍스트를 빠르게 교환하기 위한 프로토콜의 일종으로, 서버와 클라이언트의 사이에서 어떻게 메시지를 교환할지를 정해 놓은 규칙이다.
 교통시스템과 그 법규와 비슷한 개념으로 느껴짐.
 
-<details>
-
-<summary>OSI 7 계층</summary>
-1계층부터 기반이 되어 7계층까지 구성됨. (하부 계층이 구성되어야 상부 계층이 구성 가능)
-
-2계층 - 데이터 링크 계층 ⇒ MAC address
-
-3계층 - 네트워크 계층 ⇒ IP address
-
-4계층 - 전송 계층 → TCP, UDP ⇒ Port number
-
-7계층 - 응용 계층 → HTTP 등
-
-*HTTPS를 위한 TLS 같은 보안 계층이 먼저 들어갈 수도 있다.
-
-HTTPS는 암호화 프로토콜을 사용하여 통신을 암호화한다.<br />
-이 프로토콜은 이전에는 보안 소켓 계층(SSL)으로 알려졌지만, 전송 계층 보안(TLS)이라고 불린다.<br />
-이 프로토콜은 비대칭 공개 키 인프라로 알려진 것을 사용하여 통신을 보호.<br />
-이 유형의 보안 시스템에서는 두 개의 서로 다른 키를 사용하여 두 당사자 간의 통신을 암호화.
-
-</details>
-
 - 클라이언트-서버 모델<br />
   말그대로 고객과 서비스제공자(serve+er)의 관계.<br />
   클라이언트가 요청을 하고 서버가 그에 따라 준비된 것을 제공한다.<br />
@@ -48,6 +26,27 @@ Start line은 요청/응답의 형태가 다르다.
 2. 위와 다르게 꼭 사람이 읽을 수 있는 텍스트 형태일 필요는 없다. 바이너리 등 가능.
 3. 하나가 아니라 여럿일 수도 있다. 파일 업로드 등을 위해 쓰이는 multipart/form-data가 대표적.
 
+<details>
+
+<summary>OSI 7 계층</summary>
+1계층부터 기반이 되어 7계층까지 구성됨. (하부 계층이 구성되어야 상부 계층이 구성 가능)
+
+2계층 - 데이터 링크 계층 ⇒ MAC address
+
+3계층 - 네트워크 계층 ⇒ IP address
+
+4계층 - 전송 계층 → TCP, UDP ⇒ Port number
+
+7계층 - 응용 계층 → HTTP 등
+
+*HTTPS를 위한 TLS 같은 보안 계층이 먼저 들어갈 수도 있다.
+
+HTTPS는 암호화 프로토콜을 사용하여 통신을 암호화한다.<br />
+이 프로토콜은 이전에는 보안 소켓 계층(SSL)으로 알려졌지만, 전송 계층 보안(TLS)이라고 불린다.<br />
+이 프로토콜은 비대칭 공개 키 인프라로 알려진 것을 사용하여 통신을 보호.<br />
+이 유형의 보안 시스템에서는 두 개의 서로 다른 키를 사용하여 두 당사자 간의 통신을 암호화.
+
+</details>
 <details>
 <summary>HTTP Method & Status Code</summary>
 HTTP Method (요청)
@@ -345,5 +344,56 @@ Collection Pattern과 HTTP Method를 이용해 CRUD를 표현할 수 있다.
 
 1. `GET /session` → 세션 확인 → 내 정보 확인?
 2. `GET /users/me` → User ID를 me라고 쓰면, 현재 사용자의 User ID로 처리하게 정하고, API 스펙 문서에 기록.
+
+</details>
+<details><summary>CORS</summary>
+
+
+> CORS (Cross-Origin Resource Sharing)는 웹 보안 정책 중 하나로, 다른 도메인(출처)에서 리소스에 접근하는 것을 제어하는 브라우저 정책.
+>
+
+CORS는 웹 애플리케이션에서 다른 도메인의 API 또는 서버로 요청을 보낼 때, 보안 상의 이슈를 방지하고 동일 출처 정책 (Same-Origin Policy)을 허용하는 방법을 제공합니다.
+
+![cors-aws](https://docs.aws.amazon.com/ko_kr/sdk-for-javascript/v3/developer-guide/images/cors-overview.png)
+
+CORS (Cross-Origin Resource Sharing)는 웹 보안 정책 중 하나로, 다른 도메인(출처)에서 리소스에 접근하는 것을 제어하는 브라우저 정책입니다. CORS는 웹 애플리케이션에서 다른 도메인의
+API 또는 서버로 요청을 보낼 때, 보안 상의 이슈를 방지하고 동일 출처 정책 (Same-Origin Policy)을 허용하는 방법을 제공합니다.
+
+1. **동일 출처 정책 (Same-Origin Policy)**:
+    - 웹 보안의 핵심 원칙 중 하나로, 스크립트가 다른 출처의 리소스에 접근하는 것을 제한합니다.
+    - 동일 출처 정책은 보안을 강화하기 위한 것이지만, 웹 애플리케이션에서 외부 도메인의 데이터 또는 서비스에 접근할 필요가 있는 경우 이를 제한합니다.
+
+2. **JSONP (JSON with Padding)**:
+    - JSONP는 JSON 데이터를 가져오기 위한 다른 출천에서 스크립트를 로드하는 방법입니다.
+    - JSONP는 보안에 취약할 수 있으며, CORS와 비교하여 덜 안전합니다.
+
+3. **Access-Control-Allow-Origin**:
+    - CORS를 사용하여 다른 출천의 요청을 허용하는 방법 중 하나입니다.
+    - 서버 응답 헤더에 `Access-Control-Allow-Origin` 헤더를 추가하여 다른 출처의 도메인을 명시적으로 허용합니다.
+
+```java
+@GetMapping("/")
+public List<PostDto> list(HttpServletResponse response){
+        response.addHeader("Access-Controll-Allow-Origin","http://localhost:3000"); // front request origin
+        return postDtos;
+        }
+```
+
+4. **`@CrossOrigin` 어노테이션**:
+    - `@CrossOrigin` 어노테이션은 Spring Framework에서 제공하는 것으로, 서버 측에서 CORS 정책을 관리하고 특정 컨트롤러 또는 핸들러 메서드에 적용할 수 있습니다.
+    - `@CrossOrigin` 어노테이션을 사용하면 특정 출처에서의 요청을 허용하고, 허용할 출처를 설정할 수 있습니다.
+    - 이를 통해 서버 측에서 CORS 정책을 관리하고 클라이언트와 안전하게 데이터를 교환할 수 있습니다.
+
+```java
+ @CrossOrigin("")
+@GetMapping("/{id}")
+public String detail(@PathVariable String id)throws JacksonException{
+        PostDto postDto=new PostDto(id,"test title","test content");
+        String json=objectMapper.writeValueAsString(postDto);
+        return json;
+        }
+```
+
+CORS와 `@CrossOrigin` 어노테이션은 웹 애플리케이션에서 다른 도메인과의 통신을 안전하게 허용하는 중요한 보안 기능입니다. 이를 사용하여 웹 애플리케이션의 데이터 접근성을 향상시킬 수 있습니다.
 
 </details>
