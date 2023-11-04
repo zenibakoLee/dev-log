@@ -5,6 +5,9 @@ Spring Framework에서 어노테이션(Annotation)은 애플리케이션의 구�
 사용됩니다.<br>
 어노테이션은 자바 클래스, 메서드, 필드 및 다른 요소에 주석으로 적용됩니다.
 
+이러한 어노테이션들은 Spring Framework를 사용하여 애플리케이션을 개발할 때 구성, 의존성 주입, 웹 요청 처리, 데이터 액세스, 트랜잭션 관리 등 다양한 측면에서 중요한 역할을 합니다. 어노테이션을
+사용함으로써 XML 기반 설정보다 더 간결하고 가독성이 높은 코드를 작성할 수 있습니다.
+
 Spring Framework에서 사용되는 어노테이션 중 일부는 다음과 같습니다:
 
 - @Component: 스프링 컨테이너가 해당 클래스를 빈(Bean)으로 관리하도록 표시하는 어노테이션입니다. @Component를 확장한 다른 어노테이션들도 있으며, 예를 들어 @Service,
@@ -16,8 +19,6 @@ Spring Framework에서 사용되는 어노테이션 중 일부는 다음과 같�
 
 - @Bean: 스프링 컨테이너가 해당 메서드의 반환 값을 빈으로 관리하도록 표시하는 어노테이션입니다. 주로 @Configuration 클래스 내에서 사용됩니다.
 
-- @RequestMapping: Spring MVC 컨트롤러 클래스에서 HTTP 요청과 매핑할 메서드를 정의하는 데 사용됩니다. 요청 경로, HTTP 메소드 및 다른 매핑 관련 정보를 지정할 수 있습니다.
-
 - @Service: 비즈니스 로직을 수행하는 서비스 클래스임을 나타내는 어노테이션입니다. 주로 서비스 계층의 클래스에 사용됩니다.
 
 - @Repository: 데이터베이스 연동을 위한 데이터 액세스 객체(DAO)임을 나타내는 어노테이션입니다. 주로 데이터 액세스 계층의 클래스에 사용됩니다.
@@ -28,18 +29,26 @@ Spring Framework에서 사용되는 어노테이션 중 일부는 다음과 같�
 
 - @Transactional: 데이터베이스 트랜잭션을 처리하는 데 사용되며, 메서드 레벨 또는 클래스 레벨에서 트랜잭션 관리를 활성화합니다.
 
-이러한 어노테이션들은 Spring Framework를 사용하여 애플리케이션을 개발할 때 구성, 의존성 주입, 웹 요청 처리, 데이터 액세스, 트랜잭션 관리 등 다양한 측면에서 중요한 역할을 합니다. 어노테이션을
-사용함으로써 XML 기반 설정보다 더 간결하고 가독성이 높은 코드를 작성할 수 있습니다.
+```java
 
-- [@RestController](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html):
-  해당 클래스가 RESTful 웹 서비스에서 JSON 또는 XML 형식의 응답을 생성하는 역할을 수행한다는 것을 나타냅니다.<br>
-  이 애너테이션은 @Controller 및 @ResponseBody를 결합한 것으로, 컨트롤러 메서드에서 반환하는 값은 HTTP 응답으로 직접 변환되어 클라이언트에게 전송됩니다.
-    - [@Controller](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Controller.html):
-      해당 클래스가 웹 애플리케이션의 컨트롤러 역할을 한다는 것을 나타냅니다.
-    - [@ResponseBody](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ResponseBody.html):
-      컨트롤러 메서드에 적용되며, 해당 메서드가 HTTP 응답의 본문(body) 부분을 직접 반환한다는 것을 나타냅니다.<br>메서드의 반환 값이 JSON, XML 또는 다른 형식의 데이터로 직렬화되어
-      클라이언트에게 전송됩니다
-- [@GetMapping](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html):
-  HTTP GET 요청에 응답하는 컨트롤러 메서드에 적용됩니다.
-    - [@RequestMapping](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestMapping.html):
-      컨트롤러 메서드 또는 클래스에 적용되며, 요청 URL과 요청 메서드(GET, POST, PUT, DELETE 등)를 매핑시킬 때 사용됩니다.
+@SpringBootApplication
+public class AssignmentApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(AssignmentApplication.class, args);
+    }
+
+    @Bean // 스프링 컨테이너가 해당 메서드의 반환 값을 빈으로 관리하도록 표시
+    public WebMvcConfigurer webMvcConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry
+                        .addMapping("/**")
+                        .allowedOrigins("http://localhost:8000")
+                        .allowedMethods("*");
+            }
+        };
+    }
+}
+```
