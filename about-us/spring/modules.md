@@ -158,3 +158,28 @@ public class CommentController {
 ```
 
 </details>
+<details><summary>UUID / ULID / CLID</summary>
+모두 고유한 식별자를 나타내는 약어입니다. 이러한 식별자들은 대부분의 경우 데이터베이스 레코드, 세션, 객체, 트랜잭션 등을 고유하게 식별하기 위해 사용됩니다.
+
+"UUID," "ULID," 그리고 "CLID"는 모두 고유한 식별자를 나타내는 약어이며, 이러한 식별자들은 다양한 컨텍스트에서 사용됩니다. 다음은 각각의 식별자에 대한 간단한 설명입니다:
+
+1. [UUID](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html) (Universally Unique Identifier):
+   f17cc4e3-208e-482b-9e06-480f5bfdd02b
+    - UUID는 "Universally Unique Identifier"의 약어로, 범용적으로 사용되는 고유한 식별자입니다.
+    - UUID는 128비트나 36자리의 16진수 문자열로 표현되며, 주로 **랜덤**하게 생성됩니다.
+    - 주로 네트워크에서 고유성이 요구되는 경우나 여러 시스템 간에 데이터를 동기화하는 데 사용됩니다.
+
+2. [ULID](https://github.com/f4b6a3/ulid-creator) (Universally Unique Lexicographically **Sortable** Identifier):
+   01F48G3NW6S8TV0GQYX9DZCN8G
+    - ULID는 "Universally Unique Lexicographically Sortable Identifier"의 약어로, 시간 순서대로 정렬 가능하면서 고유한 식별자입니다.
+    - ULID는 128비트의 값으로, 타임스탬프와 임의의 값의 조합으로 생성됩니다.
+    - 주로 분산 시스템에서 시간 순서대로 **정렬**되는 고유한 식별자가 필요한 경우에 사용됩니다.
+
+3. [TSID](https://github.com/f4b6a3/tsid-creator) (Time-Sorted Unique Identifiers) : 38352658573940766
+    - Twitter's [Snowflake](https://github.com/twitter-archive/snowflake/tree/snowflake-2010)
+      와 [ULID Spec](https://github.com/ulid/spec)의 아이디어를 구현.
+    - 날짜 및 시간 정보를 기반으로 정렬 가능한 고유 식별자를 생성하는 기능을 제공합니다.
+
+이러한 식별자들은 각각의 목적과 사용 사례에 따라 다양한 구현 및 규칙을 가질 수 있으며, 고유성이 보장되고 정확한 용도에 맞게 사용되어야 합니다.
+
+</details>
