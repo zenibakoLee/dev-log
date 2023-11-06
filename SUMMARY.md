@@ -25,6 +25,7 @@
     * [Rest](about-us/architecture/rest.md)
     * [Anemic Domain Model](about-us/architecture/anemicDomainModel.md)
     * [DAO](about-us/architecture/dao.md)
+    * [Layered Architecture](about-us/architecture/layeredArchitecture.md)
 * [ORM](about-us/orm.md)
 
 [//]: # (* [💖 Values]&#40;about-us/Http.md&#41;)
