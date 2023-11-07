@@ -9,6 +9,7 @@
     * [Server](about-us/java/server.md)
     * [Annotation](about-us/java/annotation.md)
     * [Grammar](about-us/java/grammar.md)
+    * [Collection Framework](about-us/java/collectionFramework.md)
 
 [//]: # (    * [Mission]&#40;about-us/java/mission.md&#41;)
 

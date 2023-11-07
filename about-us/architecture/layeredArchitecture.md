@@ -6,7 +6,10 @@
 
 이 패턴은 크고 복잡한 소프트웨어 시스템에서 모듈화, 관심사의 분리 및 유지보수성을 달성하는 데 도움을 줍니다.
 
-일반적으로 레이어드 아키텍처는 다음과 같은 주요 계층으로 구성되며, 이러한 계층 간의 특정한 역할과 책임이 할당됩니다:
+일반적으로 레이어드 아키텍처는 다음과 같은 주요 계층으로 구성되며, 이러한 계층 간의 특정한 역할과 책임이
+할당됩니다: [PresentationDomainDataLayering - Martin Fowler](https://martinfowler.com/bliki/PresentationDomainDataLayering.html)
+
+![](https://martinfowler.com/bliki/images/presentationDomainDataLayering/all_basic.png)
 
 - 표현 계층 (Presentation Layer): 사용자와의 상호작용을 처리하는 계층으로, 주로 사용자 인터페이스 (UI)와 관련됩니다. 이 계층은 사용자 입력을 받고 출력을 생성하며 비즈니스 로직 계층으로
   요청을 전달합니다.
@@ -17,7 +20,11 @@
 - 데이터 액세스 계층 (Data Access Layer): 데이터베이스와의 상호작용을 담당하는 계층으로, 데이터베이스에 데이터를 저장하고 검색하는 작업을 처리합니다. 이 계층은 주로 데이터베이스 연결, 쿼리 작성
   및 실행을 다룹니다.
 
-레이어드 아키텍처의 주요 목표는 각 계층 간의 [결합도](https://ko.wikipedia.org/wiki/%EA%B2%B0%ED%95%A9%EB%8F%84)를 낮추고, 코드의 재사용성과 유지보수성을 향상시키는
+![](https://martinfowler.com/bliki/images/presentationDomainDataLayering/all_more.png)
+종속성은 일반적으로 레이어 스택을 통해 위에서 아래로 실행됩니다. 표현은 도메인에 따라 달라지며 도메인은 데이터 소스에 따라 달라집니다. <br>일반적인 변형은 도메인과 데이터 소스 레이어 사이에 매퍼를 도입하여
+도메인이 데이터 소스에 의존하지 않도록 항목을 정렬하는 것입니다 . 이 접근 방식을 종종 육각형 아키텍처라고 합니다
+
+레이어드 아키텍처의 주요 목표는 각 계층 간의 결합도를 낮추고, 코드의 재사용성과 유지보수성을 향상시키는
 것입니다. 또한 각 계층은 다른 계층으로부터 독립적으로 테스트가 가능하며, 변경 사항이 한 계층에서
 다른 계층으로 영향을 미치지 않도록 하는 것이 중요합니다.
 <details><summary>결합도</summary>

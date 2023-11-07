@@ -178,7 +178,8 @@ String body="Hello, world!";
 
 줄 바꿈 및 들여쓰기: Text blocks 내에서 줄 바꿈과 들여쓰기는 그대로 유지되므로 가독성이 향상됩니다.
 
-문자열 보간: Text blocks 내에서 ${변수}를 사용하여 문자열 보간(변수 삽입)이 가능합니다.</details>
+문자열 보간: Text blocks 내에서 ${변수}를 사용하여 문자열 보간(변수 삽입)이 가능합니다.
+</details>
 <details><summary>ServerSocket class</summary>
 
 ServerSocket은 Java에서 서버 측 네트워크 프로그래밍을 구현하는 데 사용되는 클래스입니다.</br>
@@ -186,7 +187,6 @@ ServerSocket 클래스는 서버 측에서 사용됩니다. ServerSocket은 클�
 처리합니다.</br>
 ServerSocket은 클라이언트로부터의 연결 요청을 수락하고, 클라이언트와의 통신을 위한 소켓 연결을 생성하는 데 사용됩니다.</br>
 ServerSocket 클래스는 Socket 클래스를 직접 상속하지 않으며, 서로 상속 관계에 있지 않습니다
-
 
 </details>
 <details>
