@@ -24,9 +24,11 @@
     * [Principles](about-us/architecture/principles.md)
     * [MVC](about-us/architecture/mvc.md)
     * [Rest](about-us/architecture/rest.md)
-    * [Anemic Domain Model](about-us/architecture/anemicDomainModel.md)
     * [DAO](about-us/architecture/dao.md)
     * [Layered Architecture](about-us/architecture/layeredArchitecture.md)
+    * [Domain Model Mattern](about-us/architecture/domainModelPattern.md)
+    * [Anemic Domain Model](about-us/architecture/anemicDomainModel.md)
+    * [Repository Pattern](about-us/architecture/repositoryPattern.md)
 * [ORM](about-us/orm.md)
 
 [//]: # (* [💖 Values]&#40;about-us/Http.md&#41;)

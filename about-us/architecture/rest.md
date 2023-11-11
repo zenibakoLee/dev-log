@@ -30,7 +30,7 @@ HTTP 프로토콜을 기반으로 하여 쉽게 이해하고 사용할 수 있�
 
 [박사 학위 논문 "Architectural Styles and the Design of Network-based Software Architectures"](https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
 
-로이 필딩(Roy Fielding)은 이 논문에서 아키텍처 스타일을 처음으로 제시하고 정의한 중요한 작품입니다.<br>
+로이 필딩(Roy Fielding)은 이 논문에서 아키텍처 스타일을 처음으로 제시하고 정의합니다.<br>
 이 논문은 웹 아키텍처의 기본 원리를 설명하고 REST의 필요성 및 제약 조건을 논의합니다.<br>
 
 필딩은 이 논문에서 RESTful 서비스의 확장성과 상호 운용성을 향상을 목적으로하여 설계할 때 준수해야 하는 필딩 제약 조건을 제안합니다. 이러한 제약 조건을 충족하면 서비스는 "RESTful"하다고 간주됩니다.
