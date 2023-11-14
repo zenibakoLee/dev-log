@@ -1,7 +1,15 @@
 # Modules
 
 <details><summary>Bean</summary>
-Spring Framework의 "bean" 모듈은 Spring Framework의 핵심 모듈 중 하나이며 Spring Framework의 기본 내장 모듈 입니다. 이 모듈은 Spring의 IoC (Inversion of Control) 컨테이너와 DI (Dependency Injection) 기능을 제공하며, Spring 애플리케이션에서 객체를 관리하고 의존성을 주입하는 데 중요한 역할을 합니다.
+Spring이 관리하는 객체를 Bean이라고 함. 대개는 Spring Bean이라고 콕 짚어서 이야기한다.
+
+예전에는 Bean에 대한 정보를 XML 파일로 써줬는데, 최근에는 Java의 Annotation으로 처리한다. 전자를 진정한 POJO라고 말하는 사람도 있지만, 후자가 너무 편하다. 여러 구현 중 선택하거나 값을
+주입하는 건 소스코드 외부(XML 파일, 환경변수 등)를 활용하는 게 좋다.
+
+Bean은 Java Config에서 @Bean 애너테이션을 써서 정의하거나, 해당 클래스에 @Component 애너테이션을 붙여주고 Scan한다(@ComponentScan 사용).
+
+Spring Framework의 "bean" 모듈은 Spring Framework의 핵심 모듈 중 하나이며 Spring Framework의 기본 내장 모듈 입니다. 이 모듈은 Spring의 IoC (Inversion
+of Control) 컨테이너와 DI (Dependency Injection) 기능을 제공하며, Spring 애플리케이션에서 객체를 관리하고 의존성을 주입하는 데 중요한 역할을 합니다.
 
 bean 모듈의 핵심 기능은 다음과 같습니다:
 
@@ -182,4 +190,21 @@ public class CommentController {
 
 이러한 식별자들은 각각의 목적과 사용 사례에 따라 다양한 구현 및 규칙을 가질 수 있으며, 고유성이 보장되고 정확한 용도에 맞게 사용되어야 합니다.
 
+</details>
+<details><summary>Interface BeanFactory</summary>
+
+최소한의 IoC Container
+
+
+> [BeanFactory](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html)
+>
+
+> [BeanDefinitionRegistry](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/support/BeanDefinitionRegistry.html)
+>
+
+> [GenericBeanDefinition](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/support/GenericBeanDefinition.html)
+>
+
+> [Given-When-Then](https://github.com/ahastudio/til/blob/main/blog/2018/12-08-given-when-then.md)
+>
 </details>

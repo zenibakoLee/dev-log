@@ -66,3 +66,6 @@ API는 다양한 형태와 프로토콜로 나타납니다.<br>
 
 웹 API는 다양한 분야에서 사용되며, 다른 애플리케이션과 시스템 간의 통합을 단순화하고 확장성을 향상시킵니다.</details>
 [GoF의 디자인패턴 1.6](https://github.com/ahastudio/til/blob/main/oop/glossary.md)
+
+[마틴 파울러] 소프트웨어 아키텍처의 중요성 (한글 자막)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/4E1BHTvhB7Y/0.jpg)](https://www.youtube.com/watch?v=4E1BHTvhB7Y)

@@ -7,7 +7,7 @@ ___
 
 Domain Model이란 해당 도메인에서 비즈니스적인 의미를 가지는 object
 
-> An object model of the domain that incorporates both behavior and data. - P of EAA
+> An object model of the domain that incorporates both behavior and data. - Martin Fowler (P of EAA Catalog)
 >
 
 도메인 모델 예시
@@ -30,6 +30,17 @@ public class Product {
     }
 }
 ```
+
+> A Service Layer defines an application's boundary [Cockburn PloP] and its set of available operations from the
+> perspective of interfacing client layers. It encapsulates the application's business logic, controlling transactions
+> and
+> coor-dinating responses in the implementation of its operations.
+>
+>마틴 파울러 - Service Layer
+>
+마틴파울러는 Service Layer 란 어플리케이션의 비즈니스 로직 즉, 도메인을 보호하는 레이어라고 말한다. 즉, 이 정의를 명확히 지키기 위해서는 Presentation Layer 에 도메인을 노출해서는
+안된다. 따라서 이러한 관점으로는 도메인은 서비스 레이어에서 DTO로 변환되어 컨트롤러로 전달되어야 한다.
+[출처](https://hudi.blog/data-transfer-object/)
 
 **[Anemic Domain Model - 도메인 모델 안티패턴](anemicDomainModel.md)**
 
@@ -75,7 +86,7 @@ ___
 - Domain Logic의 분리로 Business Logic에 집중
 - 코드 가독성
 
-<Details><Summary>Entity와 VO(ValueObject)</Summary>
+<details><summary>Entity와 VO(ValueObject)</summary>
 도메인 모델은 id 여부에 따라 Entity와 VO(ValueObject)로 나뉜다.
 
 **Entity**
@@ -103,7 +114,7 @@ ___
 
 > 출처: https://umbum.dev/1203/
 >
-</Details>
+</details>
 
 
 ___
