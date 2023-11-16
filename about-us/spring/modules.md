@@ -191,10 +191,55 @@ public class CommentController {
 이러한 식별자들은 각각의 목적과 사용 사례에 따라 다양한 구현 및 규칙을 가질 수 있으며, 고유성이 보장되고 정확한 용도에 맞게 사용되어야 합니다.
 
 </details>
-<details><summary>Interface BeanFactory</summary>
+<details><summary>BeanFactory (Interface)</summary>
 
+> The root interface for accessing a Spring bean container.
+>
+> This interface is implemented by objects that hold a number of bean definitions, each uniquely identified by a String
+> name.
+>
+> Spring 빈 컨테이너에 액세스하기 위한 루트 인터페이스입니다.
+> 이 인터페이스는 각각 문자열 이름으로 고유하게 식별되는 여러 빈 정의를 보유하는 객체에 의해 구현됩니다.
+>
 최소한의 IoC Container
+> Depending on the bean definition, the factory will return either an independent instance of a contained object (the
+> Prototype design pattern),
+>
+>  빈 정의에 따라, 팩토리는 포함된 객체의 독립적인 인스턴스(
+> 프로토타입 디자인 패턴)
+>
+>or a single shared instance (a superior alternative to the Singleton design pattern, in which the instance is a
+> singleton in the scope of the factory)
+>
+> 또는 단일 공유 인스턴스 (싱글톤 디자인 패턴의 우수한 대안으로, 인스턴스가 싱글톤 범위의
+> 싱글톤 디자인 패턴보다 우수한 대안).
 
+빈 팩토리 구현은 가능한 한 표준 빈 라이프사이클 인터페이스를 지원해야 합니다.
+
+전체 초기화 메서드 세트와 그 표준 순서는 다음과 같습니다:
+
+1. postProcessBeforeDestruction methods of DestructionAwareBeanPostProcessors
+2. DisposableBean's destroy
+3. a custom destroy-method definition1. BeanNameAware's setBeanName
+2. BeanClassLoaderAware's setBeanClassLoader
+3. BeanFactoryAware's setBeanFactory
+4. EnvironmentAware's setEnvironment
+5. EmbeddedValueResolverAware's setEmbeddedValueResolver
+6. ResourceLoaderAware's setResourceLoader (애플리케이션 컨텍스트에서 실행할 때만 적용 가능)
+7. ApplicationEventPublisherAware's setApplicationEventPublisher (애플리케이션 컨텍스트에서 실행할 때만 적용 가능)
+8. MessageSourceAware's setMessageSource  (애플리케이션 컨텍스트에서 실행할 때만 적용 가능)
+9. ApplicationContextAware's setApplicationContext  (애플리케이션 컨텍스트에서 실행할 때만 적용 가능)
+10. ServletContextAware's setServletContext  (애플리케이션 컨텍스트에서 실행할 때만 적용 가능)
+11. postProcessBeforeInitialization methods of BeanPostProcessors
+12. InitializingBean's afterPropertiesSet
+13. a custom init-method definition
+14. postProcessAfterInitialization methods of BeanPostProcessors
+
+빈 팩토리의 종료 시에는 다음과 같은 라이프사이클 메서드가 적용됩니다:
+
+1. postProcessBeforeDestruction methods of DestructionAwareBeanPostProcessors
+2. DisposableBean's destroy
+3. a custom destroy-method definition
 
 > [BeanFactory](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html)
 >

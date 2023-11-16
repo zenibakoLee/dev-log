@@ -33,6 +33,7 @@
     * [Domain Model Pattern](about-us/architecture/domainModelPattern.md)
     * [Anemic Domain Model](about-us/architecture/anemicDomainModel.md)
     * [Repository Pattern](about-us/architecture/repositoryPattern.md)
+    * [Singleton Pattern](about-us/architecture/singletonPattern.md)
 * [ORM](about-us/orm.md)
 
 [//]: # (* [💖 Values]&#40;about-us/Http.md&#41;)
