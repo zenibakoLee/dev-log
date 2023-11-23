@@ -33,9 +33,7 @@
 Relation은 “Tuple의 집합(거칠게 말하면 Table)”을 의미한다. Relationship과 Relation은 유사해 보이지만(심지어 번역하면 둘 다 “관계”라서 구분하기 어렵다), 실제로 이 둘은
 “락”과 “락스”처럼 아무 상관 없는 용어라고 생각하자.
 
->
->
-💽 [**A Relational Model of Data for Large Shared Data Banks](https://web.archive.org/web/20070612235326/http://www.acm.org/classics/nov95/toc.html)**
+> [**A Relational Model of Data for Large Shared Data Banks](https://web.archive.org/web/20070612235326/http://www.acm.org/classics/nov95/toc.html)**
 >
 >*“The term **relation** is used here in its accepted mathematical sense. Given sets S1, S1, ···, Sn, (not necessarily
 > distinct), R is a **relation** on these n sets if it is a **set of n-tuples** each of which has its first element from
@@ -48,6 +46,8 @@ Relation은 “Tuple의 집합(거칠게 말하면 Table)”을 의미한다. Re
 1. Relation
 2. Tuple
 3. Attribute
+
+![](https://upload.wikimedia.org/wikipedia/commons/7/7c/Relational_database_terms.svg)
 
 여기서는 가장 작은 것부터 역순으로 살펴보자.
 
