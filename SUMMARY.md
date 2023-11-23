@@ -35,6 +35,9 @@
     * [Repository Pattern](about-us/architecture/repositoryPattern.md)
     * [Singleton Pattern](about-us/architecture/singletonPattern.md)
 * [ORM](about-us/orm.md)
+* [Database](about-us/database/README.md)
+    * [DBMS](about-us/database/dbms.md)
+    * [DataModel](about-us/database/dataModel.md)
 
 [//]: # (* [💖 Values]&#40;about-us/Http.md&#41;)
 
