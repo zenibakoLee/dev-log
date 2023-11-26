@@ -253,3 +253,103 @@ public class CommentController {
 > [Given-When-Then](https://github.com/ahastudio/til/blob/main/blog/2018/12-08-given-when-then.md)
 >
 </details>
+<details><summary>Spring jdbcTemplate</summary>
+
+> [JdbcTemplate](https://docs.spring.io/spring-framework/docs/6.0.4/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html)
+>
+
+> [Data Access](https://docs.spring.io/spring-framework/docs/6.0.4/reference/html/data-access.html#jdbc-core)
+>
+
+> [Spring Initializr](https://start.spring.io/)
+>
+⇒ JDBC API, Spring Boot DevTools 의존성 추가.
+
+간단한 실험은 Spring Boot Command Line Runner 또는 JUnit을 사용할 수 있다.
+
+JUnit을 강력히 추천하지만, 여기서는 Command Line Runner를 사용하는 법을 간단히 알아보자.
+
+```java
+
+@Component
+public class AppRunner implements CommandLineRunner {
+    private final JdbcTemplate jdbcTemplate;
+
+    public AppRunner(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        String sql = "SELECT name FROM people";
+
+        jdbcTemplate.query(sql, resultSet -> {
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                System.out.println(name);
+            }
+        });
+    }
+
+}
+
+```
+
+간단한 SQL 쿼리 실행. PreparedStatement 적용이 쉽다. 문자열을 포함하는지 확인할 때는 LIKE와 %를 사용한다.
+
+```java
+String sql="SELECT name FROM people WHERE name LIKE ?";
+
+        jdbcTemplate.query(sql,resultSet->{
+        String name=resultSet.getString("name");
+
+        System.out.println(name);
+
+        },"%우");
+```
+
+Query(SELECT)가 아니라 Command(INSERT, UPDATE, DELETE)를 실행할 때는 update 메서드 사용.
+
+```java
+String sql="""
+INSERT INTO people (name, age, gender) VALUES (?, ?, ?)
+""";
+
+        jdbcTemplate.update(sql,"홍길동",15,"남");
+```
+
+TransactionTemplate을 써서 트랜잭션을 관리할 수 있다.
+
+```java
+
+@Component
+public class AppRunner implements CommandLineRunner {
+    private JdbcTemplate jdbcTemplate;
+    private TransactionTemplate transactionTemplate;
+
+    public AppRunner(JdbcTemplate jdbcTemplate,
+                     TransactionTemplate transactionTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.transactionTemplate = transactionTemplate;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        transactionTemplate.execute(status -> {
+            String sql = """
+                    INSERT INTO people(name, age, gender) VALUES(?, ?, ?)
+                    """;
+
+            jdbcTemplate.update(sql, "홍길동", 15, "남");
+
+            // 이런 식으로 예외를 던지면 전부 없던 일로 만들 수 있다.
+            // throw new RuntimeException("FAIL!");
+
+            return null;
+        });
+    }
+
+}
+```
+
+</details>

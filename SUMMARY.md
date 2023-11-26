@@ -10,6 +10,7 @@
     * [Annotation](about-us/java/annotation.md)
     * [Grammar](about-us/java/grammar.md)
     * [Collection Framework](about-us/java/collectionFramework.md)
+    * [Modules](about-us/java/modules.md)
 
 [//]: # (    * [Mission]&#40;about-us/java/mission.md&#41;)
 
