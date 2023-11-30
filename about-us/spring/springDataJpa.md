@@ -1,7 +1,7 @@
 # Spring Data Jpa
 
 * [JPA](../java/jpa.md)
-* https://spring.io/projects/spring-data-jpa
+* [https://spring.io/projects/spring-data-jpa]()
 
 > Spring Data JPA를 사용하면 JPA 기반(Java Persistence API) 리포지토리를 쉽게 구현할 수 있습니다.
 >
@@ -121,6 +121,8 @@ public interface PersonRepository extends CrudRepository<Person, String> {
 
 이렇게 인터페이스만 만들어 주면 끝이다. 전형적인 Collection인 List나 JPA의 EntityManager에 update가 없는 것처럼, PersonRepository에도 update가 필요하지 않다.
 Query를 위한 find 메서드는 findByXXX 형태로 써주기만 해도 된다.
+
+
 ---
 
 ### Transactional 애너테이션
