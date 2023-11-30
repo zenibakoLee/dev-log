@@ -118,6 +118,17 @@ sdk --help
 brew install --cask intellij-idea
 ```
 
+F2 = go to red alert
+
+shift shift = finder
+
+cmd + , => preference
+
+on save 검색 => 상위 두개 reformat check
+
+gradle 검색 => build and run, test using IntelliJ : 속도가 더 빠름
+
+
 </details>
 <details><summary>Sourcetree</summary>
 
@@ -289,5 +300,41 @@ brew install --cask sourcetree
     ```bash
     git config --list 
     ```
+
+</details>
+<details><summary>Docker / postgresql</summary>
+
+https://www.docker.com/products/docker-desktop/
+
+
+> Mac의 경우 최신 OS 버젼(Sonoma)로 업데이트를 해야 컨테이너가 실행되는 (Docker Desktop Stopped)에러가 있었다.
+>
+
+```shell
+# docker 에 postgres 도커 이미지 다운받기
+docker pull postgres
+
+# postgres 이미지 실행(포트는 자동으로 5432 로 세팅됩니다.)
+docker run -p 5432:5432 --name demo -e POSTGRES_PASSWORD=password -d postgres
+
+# docker 실행 확인
+docker ps
+```
+
+</details>
+<details><summary>Postico</summary>
+
+- postico 설치: `brew install --cask postico`
+- 아래처럼 입력 후 `Connect` 를 눌러 주세요.
+
+postgresql 기준
+
+- Host: localhost / Port: 5432
+- Host: localhost
+- User: postgres
+- password: password
+- database: postgres
+
+=> connect
 
 </details>

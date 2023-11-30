@@ -11,6 +11,7 @@
     * [Grammar](about-us/java/grammar.md)
     * [Collection Framework](about-us/java/collectionFramework.md)
     * [Modules](about-us/java/modules.md)
+    * [JPA](about-us/java/jpa.md)
 
 [//]: # (    * [Mission]&#40;about-us/java/mission.md&#41;)
 
@@ -24,6 +25,8 @@
     * [SpringAOP](about-us/spring/springAOP.md)
     * [Dependency Injection](about-us/spring/dependencyInjection.md)
     * [IoC Container](about-us/spring/iocContainer.md)
+    * [Hibernate](about-us/spring/hibernate.md)
+    * [Spring Data Jpa](about-us/spring/springDataJpa.md)
 * [Architecture](about-us/architecture/README.md)
     * [Principles](about-us/architecture/principles.md)
     * [MVC](about-us/architecture/mvc.md)
@@ -35,10 +38,12 @@
     * [Anemic Domain Model](about-us/architecture/anemicDomainModel.md)
     * [Repository Pattern](about-us/architecture/repositoryPattern.md)
     * [Singleton Pattern](about-us/architecture/singletonPattern.md)
-* [ORM](about-us/orm.md)
+* [ORM](about-us/database/orm.md)
 * [Database](about-us/database/README.md)
     * [DBMS](about-us/database/dbms.md)
     * [DataModel](about-us/database/dataModel.md)
+    * [ORM](about-us/database/orm.md)
+    * [N+1 problem](about-us/database/n+1.md)
 
 [//]: # (* [💖 Values]&#40;about-us/Http.md&#41;)
 

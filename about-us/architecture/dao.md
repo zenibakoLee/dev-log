@@ -127,3 +127,36 @@ public class PostMapDao implements PostDAO {
 6. **다형성 활용:** 다형성을 활용하여 동일한 인터페이스를 구현하는 다양한 클래스를 처리할 수 있습니다. 이는 동적인 구현 교체와 다양한 구현 간의 상호 작용을 허용합니다.
 
 결론적으로, 구현 클래스 대신 인터페이스를 사용하는 방식은 코드의 유연성을 향상시키고 의존성을 효과적으로 관리하여 좀 더 모듈화된, 테스트 가능한, 확장 가능한 소프트웨어 시스템을 만드는 데 도움이 됩니다.
+
+---
+
+### DAO & Repository
+
+> [repository](./repositoryPattern.md) := dao (비슷함) 이 둘은 거의 같다고 생각하셔도 무방합니다.
+>
+> 좀 더 깊이있게 차이를 설명하면, repotiroy는 엔티티 객체를 보관하고 관리하는 저장소이고,
+>
+> dao는 데이터에 접근하도록 DB접근 관련 로직을 모아둔 객체입니다.
+>
+> 둘다 개념의 차이일뿐 실제로 개발할 때는 비슷하게 사용됩니다.
+>
+>  김영한님 - https://www.inflearn.com/questions/111159/comment/84415
+>
+
+DAO와 Repository는 모두 데이터베이스 액세스에 사용되지만, DAO는 전통적인 패턴으로 주로 저수준 API를 사용하고 SQL 쿼리를 직접 작성합니다. 반면에 Repository는 주로 스프링 데이터 JPA와
+같은 고수준 ORM 기술과 함께 사용되며, 객체와 데이터베이스 간의 매핑을 자동으로 처리하고 높은 수준의 추상화를 제공합니다. 최근에는 두 용어 간의 구분이 희미해지고 있습니다.
+
+* DAO는 Data Peristence의 추상화이고, Repository는 객체 Collection의 추상화이다.
+* DAO는 storage system에 더 가까운 개념이고 상대적으로 low level concept, Repository는 Domain객체에 가까운 개념이며 상대적으로 high level concept
+* DAO는 데이터 맵핑/접근 계층으로 쿼리를 숨기지만, Repository는 Domain과 DAL사이의 계층으로 데이터를 대조하고 Domain 객체로 Mapping하는 로직을 숨긴다.
+* DAO는 Repository를 사용하여 구현할 수 없지만, Repository는 DAO를 사용해 구현할 수 있다.
+
+Data Access한다는 점에서 Repository와 DAO는 공통점을 갖지만, Repository는 객체 중심, DAO는 데이터 저장소(DB 테이블) 중심인 것이다.
+
+또한, Repository는 객체 중심으로 데이터를 다루기 위해 하나 이상의 DAO를 사용할 수 있으며, 따라서 DAO보다 higher layer이다.
+
+
+---
+참고:
+
+- https://isaac56.github.io/etc/2021/08/29/difference_DAO_Repository/

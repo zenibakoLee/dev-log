@@ -118,5 +118,75 @@ ___
 
 
 ___
+
+### Aggregate
+
+도메인 주도 설계(DDD)에서 Aggregate는 연관된 객체들의 그룹입니다. Aggregate는 일관성 경계를 정의하고 해당 경계 내에서 일관성이 유지되어야 하는 일련의 객체로 구성됩니다. Aggregate는 단일
+루트 엔터티(root entity)로 구성되며, 이 루트 엔터티는 Aggregate 내부의 다른 객체들에 대한 유일한 진입점(entry point) 역할을 합니다.
+
+### Aggregate의 특징:
+
+1. **루트 엔터티 (Root Entity):**
+
+- Aggregate의 핵심은 루트 엔터티입니다. 이 루트 엔터티는 Aggregate 내에서 일관성을 유지하고 Aggregate 외부에서 Aggregate에 접근하는 유일한 방법입니다.
+
+2. **일관성 경계 (Consistency Boundary):**
+
+- Aggregate는 일관성 경계를 가지며, 일관성은 해당 Aggregate 내에서만 유지되어야 합니다. 즉, Aggregate 내의 객체들은 서로의 상태를 변경할 수 있지만, 외부에서 직접적으로 상태를 변경하는
+  것은 허용되지 않습니다.
+
+3. **식별자 (Identifier):**
+
+- Aggregate는 각각 고유한 식별자를 가지고 있습니다. 이 식별자는 루트 엔터티의 주요 특징으로, 다른 Aggregate와의 구분을 위해 사용됩니다.
+
+4. **캡슐화 (Encapsulation):**
+
+- Aggregate 내부의 객체들은 외부에서 직접적으로 접근되지 않고, 루트 엔터티를 통해 간접적으로만 접근됩니다. 이것은 객체 간의 캡슐화를 유지하고 일관성을 보장하는 데 도움이 됩니다.
+
+5. **생명 주기 (Lifecycle):**
+
+- Aggregate는 자체적인 생명 주기를 가지며, 루트 엔터티의 생명 주기에 따라 내부 객체들도 관리됩니다. 루트 엔터티가 생성되거나 삭제될 때, 해당 Aggregate 내의 모든 객체들도 함께 생성 또는
+  삭제됩니다.
+
+### 예시:
+
+가령, 주문(Order)이라는 Aggregate를 살펴보겠습니다. 주문은 주문 항목(OrderItem)과 배송 정보(Delivery)로 이루어져 있습니다. 이때, 주문이 Aggregate의 루트 엔터티가 되며, 주문
+항목과 배송 정보는 루트 엔터티에 속하는 내부 객체들로 구성됩니다. 이러한 구조에서 주문을 통해 주문 항목과 배송 정보에 접근하고 변경할 수 있습니다.
+
+```java
+public class Order {
+    @Id
+    private Long orderId;
+
+    private List<OrderItem> orderItems;
+    private Delivery delivery;
+
+    // ... 다른 속성과 메서드들 ...
+}
+
+public class OrderItem {
+    @Id
+    private Long orderItemId;
+
+    private String product;
+    private int quantity;
+
+    // ... 다른 속성과 메서드들 ...
+}
+
+public class Delivery {
+    @Id
+    private Long deliveryId;
+
+    private String address;
+    private DeliveryStatus status;
+
+    // ... 다른 속성과 메서드들 ...
+}
+```
+
+Aggregate는 DDD에서 복잡한 도메인 모델을 조직화하고 일관성을 유지하는 강력한 도구로 활용됩니다. Aggregate를 정의함으로써 객체 간의 관계와 책임을 명확히 정의할 수 있습니다.
+
+---
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/4QHvTeeTsj0/0.jpg)](https://youtu.be/4QHvTeeTsj0?si=u_UMRCb_PAcR-qsx&t=431)
 

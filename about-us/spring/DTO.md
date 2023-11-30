@@ -135,7 +135,7 @@ Enterprise JavaBeans(EJB)는 독립한 부품이 아닌, 미국 Sun Microsystems
 EJB는 초기 버전에서는 복잡하고 무거웠지만, EJB 3.0부터는 간소화되고 개발자 친화적으로 변경되었습니다. 현재는 EJB 3.2가 최신 버전이며, Java EE (Java Platform, Enterprise
 Edition) 스펙의 일부로 제공되며, 엔터프라이즈 애플리케이션 개발을 지원합니다. EJB를 사용하면 엔터프라이즈 애플리케이션의 개발과 관리를 효율적으로 수행할 수 있습니다.
 
-- EJB에는 [ORM](../orm.md)기술인 엔티티빈 기술을 가지고 있었다.
+- EJB에는 [ORM](../database/orm.md)기술인 엔티티빈 기술을 가지고 있었다.
 
 - Spring 컨테이너와 마찬가지로 EJB의 엔티티빈 기술을 후에 Hibernate가 등장하였고, 현재 JPA 표준 인터페이스의 구현체 중 가장 많이 사용되고 있다.
 

@@ -29,3 +29,4 @@ Spring Web 모듈은 Spring Framework의 핵심 부분 중 하나로, 웹 애플
 함께 사용되어 개발자가 빠르게 웹 애플리케이션을 구축하고 관리할 수 있도록 도와줍니다.
 
 </details>
+<Spring data JPA>
