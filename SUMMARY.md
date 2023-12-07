@@ -35,6 +35,7 @@
     * [DAO](about-us/architecture/dao.md)
     * [Layered Architecture](about-us/architecture/layeredArchitecture.md)
     * [Domain Model Pattern](about-us/architecture/domainModelPattern.md)
+    * [Domain-driven design](about-us/architecture/domainDrivenDesign.md)
     * [Anemic Domain Model](about-us/architecture/anemicDomainModel.md)
     * [Repository Pattern](about-us/architecture/repositoryPattern.md)
     * [Singleton Pattern](about-us/architecture/singletonPattern.md)

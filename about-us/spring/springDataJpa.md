@@ -162,3 +162,4 @@ public class CreateItemService {
 ---
 
 - [[SpringCamp2013] Spring Data JPA 영상 - 김영한님](https://www.youtube.com/watch?v=OOO4H3BAetU) / [발표자료](https://www.slideshare.net/zipkyh/spring-datajpa)
+- [[2019] Spring JPA의 사실과 오해 - NHN Cloud](https://www.youtube.com/watch?v=rYj8PLIE6-k&t=2s)

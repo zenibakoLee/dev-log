@@ -63,7 +63,9 @@ ___
 객체는 자신이 속한 계층에 맞는 책임을 수행하며, 같은 계층에 존재하는 객체와 더 결합된다.
 ___
 
-### Domain Driven Development
+### Domain Driven Design
+
+[정리문서](domainDrivenDesign.md)
 
 > https://zetawiki.com/wiki/%EB%8F%84%EB%A9%94%EC%9D%B8_%EC%A3%BC%EB%8F%84_%EC%84%A4%EA%B3%84_DDD
 >
@@ -91,6 +93,7 @@ ___
 
 **Entity**
 
+- 식별자(Identifier)가 존재하고, 이를 통해 동일성(Identity)을 확인
 - id가 있어 각각의 개체를 고유하게 식별 할 수 있는 경우
 - 엄밀히 불변은 아니고 시간이 지나면서 상태가 변경될 수 있는 대상임. (그러나 이와 별개로 앱단에서는 불변 객체로 처리하는 것이 좋다. 함수형.)
 - e.g., Member
@@ -99,12 +102,17 @@ ___
 
 - id가 없음
 - To avoid aliasing bugs I follow a simple but important rule:value objects should be immutable .
-- 필드 값 상태가 같다면 같은 객체로 처리해도 되는 경우
+- 필드 값 상태가 같다면 같은 객체로 처리해도 되는 경우. 속성을 통해 동등성(Equality)을 판단한다.
     - 그래서 이름이 ‘value’ object임. (반대 되는 개념 : reference object)
     - 참조가 아니라 값으로 동등함을 비교하는게 더 자연스러운 대상들.
     - 따라서 equals, hashCode 구현 필수
 - e.g., Money
 
+어떤 객체는 연속성, 식별성이 중요하지 않다. 만 원은 그냥 만 원으로 다루는 게 “여기 있는 만 원”과 “저기 있는 만 원”이 다르다고 주장하는 것보다 훨씬 유용하다. 즉, 우리의 쇼핑몰 비즈니스 도메인을 다루기에
+적합한 추상화, 모델링이라고 할 수 있다. 이 때 사용되는 게 바로 Value Object다.
+
+Value Object는 속성을 통해 동등성(Equality)을 판단한다. 즉, Value Object는 항상 Java의 equals 메서드를 구현해야 한다. 또한, 예측 가능성을 높이고 혼란을 막기 위해, 가능하면
+불변 객체로 만들어야 한다. Java 14 이상이라면 record가 이를 간단히 지원한다(다만, 아직은 JPA와 함께 사용하기 어렵다).
 
 - 특별히 비즈니스 적인 의미를 가지지 않아도, 데이터 뭉치를 하나로 묶어주는 클래스도 VO로 본다 - 리팩터링 6.8절
 
@@ -115,78 +123,3 @@ ___
 > 출처: https://umbum.dev/1203/
 >
 </details>
-
-
-___
-
-### Aggregate
-
-도메인 주도 설계(DDD)에서 Aggregate는 연관된 객체들의 그룹입니다. Aggregate는 일관성 경계를 정의하고 해당 경계 내에서 일관성이 유지되어야 하는 일련의 객체로 구성됩니다. Aggregate는 단일
-루트 엔터티(root entity)로 구성되며, 이 루트 엔터티는 Aggregate 내부의 다른 객체들에 대한 유일한 진입점(entry point) 역할을 합니다.
-
-### Aggregate의 특징:
-
-1. **루트 엔터티 (Root Entity):**
-
-- Aggregate의 핵심은 루트 엔터티입니다. 이 루트 엔터티는 Aggregate 내에서 일관성을 유지하고 Aggregate 외부에서 Aggregate에 접근하는 유일한 방법입니다.
-
-2. **일관성 경계 (Consistency Boundary):**
-
-- Aggregate는 일관성 경계를 가지며, 일관성은 해당 Aggregate 내에서만 유지되어야 합니다. 즉, Aggregate 내의 객체들은 서로의 상태를 변경할 수 있지만, 외부에서 직접적으로 상태를 변경하는
-  것은 허용되지 않습니다.
-
-3. **식별자 (Identifier):**
-
-- Aggregate는 각각 고유한 식별자를 가지고 있습니다. 이 식별자는 루트 엔터티의 주요 특징으로, 다른 Aggregate와의 구분을 위해 사용됩니다.
-
-4. **캡슐화 (Encapsulation):**
-
-- Aggregate 내부의 객체들은 외부에서 직접적으로 접근되지 않고, 루트 엔터티를 통해 간접적으로만 접근됩니다. 이것은 객체 간의 캡슐화를 유지하고 일관성을 보장하는 데 도움이 됩니다.
-
-5. **생명 주기 (Lifecycle):**
-
-- Aggregate는 자체적인 생명 주기를 가지며, 루트 엔터티의 생명 주기에 따라 내부 객체들도 관리됩니다. 루트 엔터티가 생성되거나 삭제될 때, 해당 Aggregate 내의 모든 객체들도 함께 생성 또는
-  삭제됩니다.
-
-### 예시:
-
-가령, 주문(Order)이라는 Aggregate를 살펴보겠습니다. 주문은 주문 항목(OrderItem)과 배송 정보(Delivery)로 이루어져 있습니다. 이때, 주문이 Aggregate의 루트 엔터티가 되며, 주문
-항목과 배송 정보는 루트 엔터티에 속하는 내부 객체들로 구성됩니다. 이러한 구조에서 주문을 통해 주문 항목과 배송 정보에 접근하고 변경할 수 있습니다.
-
-```java
-public class Order {
-    @Id
-    private Long orderId;
-
-    private List<OrderItem> orderItems;
-    private Delivery delivery;
-
-    // ... 다른 속성과 메서드들 ...
-}
-
-public class OrderItem {
-    @Id
-    private Long orderItemId;
-
-    private String product;
-    private int quantity;
-
-    // ... 다른 속성과 메서드들 ...
-}
-
-public class Delivery {
-    @Id
-    private Long deliveryId;
-
-    private String address;
-    private DeliveryStatus status;
-
-    // ... 다른 속성과 메서드들 ...
-}
-```
-
-Aggregate는 DDD에서 복잡한 도메인 모델을 조직화하고 일관성을 유지하는 강력한 도구로 활용됩니다. Aggregate를 정의함으로써 객체 간의 관계와 책임을 명확히 정의할 수 있습니다.
-
----
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/4QHvTeeTsj0/0.jpg)](https://youtu.be/4QHvTeeTsj0?si=u_UMRCb_PAcR-qsx&t=431)
-
