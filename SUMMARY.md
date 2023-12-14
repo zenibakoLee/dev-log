@@ -40,6 +40,7 @@
     * [Repository Pattern](src/architecture/repositoryPattern.md)
     * [Singleton Pattern](src/architecture/singletonPattern.md)
     * [SOLID principle](src/architecture/solidPrinciple.md)
+    * [Hexagonal Architecture](src/architecture/hexagonalArchitecture.md)
 * [ORM](src/database/orm.md)
 * [Database](src/database/README.md)
     * [DBMS](src/database/dbms.md)
