@@ -27,6 +27,7 @@
     * [IoC Container](src/spring/iocContainer.md)
     * [Hibernate](src/spring/hibernate.md)
     * [Spring Data Jpa](src/spring/springDataJpa.md)
+    * [Spring Security](src/spring/springSecurity.md)
 * [Architecture](src/architecture/README.md)
     * [Principles](src/architecture/principles.md)
     * [MVC](src/architecture/mvc.md)
@@ -47,6 +48,9 @@
     * [DataModel](src/database/dataModel.md)
     * [ORM](src/database/orm.md)
     * [N+1 problem](src/database/n+1.md)
+* [Security](src/security/README.md)
+    * [Auth](src/security/auth.md)
+    * [Encryption](src/security/encryption.md)
 
 [//]: # (* [💖 Values]&#40;about-us/Http.md&#41;)
 
