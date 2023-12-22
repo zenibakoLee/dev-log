@@ -51,6 +51,8 @@
 * [Security](src/security/README.md)
     * [Auth](src/security/auth.md)
     * [Encryption](src/security/encryption.md)
+    * [OAuth 2.0](src/security/oauth2.md)
+    * [Vulnerability](src/security/vulnerability.md)
 
 [//]: # (* [💖 Values]&#40;about-us/Http.md&#41;)
 
