@@ -143,16 +143,36 @@ Spring Web 모듈은 Spring Framework의 핵심 부분 중 하나로, 웹 애플
 - @ResponseBody: 메서드가 JSON 또는 XML과 같은 데이터를 직접 반환하는 데 사용되는 어노테이션입니다.
 - @ModelAttribute: 모델 객체를 생성하고 뷰에 전달하는 데 사용되는 어노테이션입니다.
 - @Valid: 객체 유효성 검사를 활성화하는 데 사용되는 어노테이션입니다.
+- @ModelAttribute: multipart/form-data 형태의 파라미터를 받아 객체로 사용하고 싶을 때 "가장 적절한" 생성자를 찾아 객체를 생성 및
+  초기화. https://velog.io/@jmjmjmz732002/Springboot-ModelAttribute
+  붙여진 @Controller 클래스에 지원
 
 ```java
 
-@RestController // 해당 클래스가 RESTful 웹 서비스에서 JSON 또는 XML 형식의 응답을 생성하는 역할을 수행
-@RequestMapping("/comments") // 컨트롤러 메서드 또는 클래스에 적용되며, 요청 URL과 요청 메서드(GET, POST, PUT, DELETE 등)를 매핑시킬 때 사용
-public class CommentController {
-    @GetMapping() //HTTP GET 요청에 응답하는 컨트롤러 메서드에 적용됩니다.
-    public List<CommentDto> getComments(@RequestParam("postId") String postId) {
-        List<CommentDto> foundCommentDtos = commentDtos.stream().filter(commentDto -> commentDto.getPostId().equals(postId)).toList();
-        return foundCommentDtos;
+@RestController// 해당 클래스가 RESTful 웹 서비스에서 JSON 또는 XML 형식의 응답을 생성하는 역할을 수행
+@RequestMapping("images")
+public class ImageController {
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    // 컨트롤러 메서드 또는 클래스에 적용되며, 요청 URL과 요청 메서드(GET, POST, PUT, DELETE 등)를 매핑시킬 때 사용
+    @ResponseStatus(HttpStatus.CREATED)
+    public String create(
+            @ModelAttribute UploadImageDto imageDto
+    ) {
+        MultipartFile multipartFile = imageDto.image();
+
+        if (multipartFile == null || multipartFile.isEmpty()) {
+            return "No image";
+        }
+        // 저장 로직은 분리 권장
+        String id = TSID.Factory.getTsid().toString();
+        File file = new File("data/" + id + ".jpg");
+
+        try (OutputStream outputStream = new FileOutputStream(file)) {
+            byte[] content = multipartFile.getBytes();
+            outputStream.write(content);
+        }
+
+        return multipartFile.getOriginalFilename();
     }
 
     @PutMapping("/{id}")
@@ -162,7 +182,6 @@ public class CommentController {
         foundCommentDto.setContent(commentDto.getContent());
     }
 }
-
 ```
 
 </details>
@@ -352,4 +371,66 @@ public class AppRunner implements CommandLineRunner {
 }
 ```
 
+</details>
+<details><summary>Cloudinary</summary>
+
+Cloudinary는 클라우드로 이미지와 비디오를 관리할 수 있게 해주는 SaaS(Software as a Service)다.
+일정 수준까지는 무료로 사용할 수 있고, 썸네일 이미지 등을 즉각적으로 생성 및 캐시할 수 있다
+
+> [Cloudinary](https://cloudinary.com/)
+>
+
+> [Cloudinary Java SDK](https://cloudinary.com/documentation/java_integration)
+>
+
+> [Cloudinary](https://en.wikipedia.org/wiki/Cloudinary)
+>
+
+```yaml
+cloudinary:
+  url: ${CLOUDINARY_URL:cloudinary://key:secret@cloud}
+```
+
+application.yml 에서 환경변수를 호출하도록 설정 (기본값 cloudinary://key:secret@cloud으로)
+
+```java
+
+@Component
+public class ImageStorage {
+    private final Cloudinary cloudinary;
+
+    public ImageStorage(
+            @Value("${cloudinary.url}") String cloudinaryUrl
+    ) {
+        cloudinary = new Cloudinary(cloudinaryUrl);
+        cloudinary.config.secure = true;
+    }
+
+    public String save(byte[] bytes) {
+        String id = TSID.Factory.getTsid().toString();
+
+        Map options = ObjectUtils.asMap(
+                "public_id", "test/" + id
+        );
+
+        try {
+            Map result = cloudinary.uploader().upload(bytes, options);
+            return result.get("secure_url").toString();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+업로드한 이미지를 다음과 같이 즉각적으로 변형해서 사용할 수 있다.
+
+- 원본 이미지: https://res.cloudinary.com/demo/image/upload/w_800/lady.png
+- 썸네일로 만들기: https://res.cloudinary.com/demo/image/upload/c_fill,w_400,h_400/lady.png
+- 얼굴로 썸네일 만들기: https://res.cloudinary.com/demo/image/upload/c_crop,g_face,w_400,h_400/lady.png
+- 원형으로 자르기: https://res.cloudinary.com/demo/image/upload/c_crop,g_face,w_400,h_400/r_max/lady.png
+- 블러 효과 추가: https://res.cloudinary.com/demo/image/upload/c_crop,g_face,w_400,h_400/r_max/e_blur:500/lady.png
+
+> 자세한 건 문서 참고: https://cloudinary.com/documentation/image_transformations
+>
 </details>

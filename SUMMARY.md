@@ -21,7 +21,6 @@
     * [OnWebService](src/spring/onWebService.md)
     * [DTO](src/spring/DTO.md)
     * [Modules](src/spring/modules.md)
-    * [Dependency](src/spring/dependency.md)
     * [SpringAOP](src/spring/springAOP.md)
     * [Dependency Injection](src/spring/dependencyInjection.md)
     * [IoC Container](src/spring/iocContainer.md)

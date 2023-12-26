@@ -174,3 +174,16 @@ Instant instant=Instant.ofEpochMilli(epochTime);
 ```
 
 </details>
+<details><summary>I/O</summary>
+
+#### class FileOutputStream
+
+java.lang.Object</br>
+ㄴ java.io.OutputStream</br>
+ㄴ java.io.FileOutputStream
+
+인터페이스:
+Closeable, Flushable
+
+: File 또는 FileDescriptor에 데이터를 출력하기 위한 파일 출력 스트림, 관계된 파일이 열려 있는 경우는 이 클래스의 생성자는 실패
+</details>
