@@ -12,6 +12,7 @@
     * [Collection Framework](src/java/collectionFramework.md)
     * [Modules](src/java/modules.md)
     * [JPA](src/java/jpa.md)
+    * [Exception](src/java/exception.md)
 
 [//]: # (    * [Mission]&#40;about-us/java/mission.md&#41;)
 
