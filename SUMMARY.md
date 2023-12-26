@@ -28,6 +28,7 @@
     * [Hibernate](src/spring/hibernate.md)
     * [Spring Data Jpa](src/spring/springDataJpa.md)
     * [Spring Security](src/spring/springSecurity.md)
+    * [Environment Variable](src/spring/environmentVariable.md)
 * [Architecture](src/architecture/README.md)
     * [Principles](src/architecture/principles.md)
     * [MVC](src/architecture/mvc.md)

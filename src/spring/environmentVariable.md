@@ -143,7 +143,7 @@ name=prd
 name=ver #name이 ver인 설정이 들어갔다.
 ```
 
-![https://velog.io/@probsno/%EC%8A%A4%ED%94%84%EB%A7%81%EC%97%90%EC%84%9C-Environment%EB%A5%BC-%EC%84%A4%EC%A0%95%ED%95%98%EB%8A%94-%EB%8B%A4%EC%96%91%ED%95%9C-%EB%B0%A9%EB%B2%95%EB%93%A4](../spring_environment_edit/img.png)
+![https://velog.io/@probsno/%EC%8A%A4%ED%94%84%EB%A7%81%EC%97%90%EC%84%9C-Environment%EB%A5%BC-%EC%84%A4%EC%A0%95%ED%95%98%EB%8A%94-%EB%8B%A4%EC%96%91%ED%95%9C-%EB%B0%A9%EB%B2%95%EB%93%A4](../../resources/spring_environment_edit.png)
 
 ---
 
