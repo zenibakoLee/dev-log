@@ -163,6 +163,70 @@ Authentication authentication=...; // 적절한 Authentication 객체 생성
 
 ---
 
+## Basic Setting
+
+`@EnableWebSecurity` 및 `@EnableMethodSecurity(securedEnabled = true)`는 Spring Security 설정과 메서드 수준의 보안 구성을 활성화하는
+어노테이션입니다.
+
+### 1. **@EnableWebSecurity:**
+
+- `@EnableWebSecurity` 어노테이션은 Spring Security를 사용하는 웹 애플리케이션에 대한 기본 보안 구성을 활성화합니다.
+- 이 어노테이션을 사용하면 Spring Security의 필터 체인이 자동으로 생성되어 요청에 대한 보안 검사 및 처리를 담당합니다.
+- `WebSecurityConfigurerAdapter`를 상속한 구성 클래스를 작성하여 사용자 지정 보안 설정을 추가할 수 있습니다.
+
+예시:
+
+```java
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // 웹 보안 구성을 추가
+        http
+                .authorizeRequests()
+                .antMatchers("/public/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
+    }
+}
+```
+
+### 2. **@EnableMethodSecurity(securedEnabled = true):**
+
+- `@EnableMethodSecurity` 어노테이션은 메서드 수준의 보안을 활성화합니다.
+- `securedEnabled = true`로 설정하면 `@Secured` 어노테이션을 사용하여 메서드에 보안 권한을 부여할 수 있습니다.
+- 메서드에 사용자 권한을 지정하여 해당 메서드의 실행 여부를 제어할 수 있습니다.
+
+예시:
+
+```java
+
+@Service
+public class MyService {
+
+    @Secured("ROLE_USER")
+    public String getUserData() {
+        // 해당 메서드에는 "ROLE_USER" 권한이 필요합니다.
+        // 권한이 없는 경우 예외 발생 가능
+        return "User data";
+    }
+}
+```
+
+이러한 어노테이션들은 Spring Security를 통해 웹 및 메서드 수준에서 보안 설정을 간편하게 구성할 수 있도록 도와줍니다. 웹 보안 및 메서드 보안을 함께 사용하면 애플리케이션의 다양한 부분에서 세밀한 보안
+규칙을 정의할 수 있습니다.
+
+---
+
 ### Spring Security PasswordEncoder
 
 `PasswordEncoder`는 Spring Security에서 비밀번호를 안전하게 저장하고 검증하기 위한 인터페이스입니다. 비밀번호를 평문으로 저장하지 않고, 해시 함수를 사용하여 안전하게 저장하는 데
@@ -223,6 +287,9 @@ Spring Security에서 사용할 수 있는 주요 `PasswordEncoder` 구현체는
 ___
 
 ### @Secured
+
+> @EnableMethodSecurity 필수
+>
 
 `@Secured`는 Spring Security에서 메소드 수준의 보안을 설정하기 위해 사용되는 어노테이션 중 하나입니다. 이 어노테이션을 사용하면 특정 메소드에 대한 접근 권한을 설정할 수 있습니다.
 

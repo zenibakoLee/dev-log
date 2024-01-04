@@ -340,3 +340,7 @@ postgresql 기준
 => connect
 
 </details>
+<details><summary>lombok</summary>
+1. marketplace install
+2. annotation processors on 
+</details>
