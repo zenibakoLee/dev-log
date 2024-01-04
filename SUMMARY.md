@@ -51,6 +51,7 @@
     * [ORM](src/database/orm.md)
     * [N+1 problem](src/database/n+1.md)
     * [Redis](src/database/redis.md)
+    * [NoSQL](src/database/nosql.md)
 * [Security](src/security/README.md)
     * [Auth](src/security/auth.md)
     * [Encryption](src/security/encryption.md)
