@@ -130,6 +130,10 @@ on save 검색 => 상위 두개 reformat check
 
 gradle 검색 => build and run, test using IntelliJ : 속도가 더 빠름
 
+cmd + alt + m => extract method
+
+cmd + alt + c => extract Constant
+
 
 </details>
 <details><summary>Sourcetree</summary>
