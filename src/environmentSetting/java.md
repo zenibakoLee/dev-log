@@ -125,7 +125,9 @@ sdk --help
    환경변수 설정을 위한 경로 확인
 2. \~/.zshrc 파일을 편집하여 맨 아래줄에 다음을 추가한다.\
    `export PATH=$PATH:/Applications/IntelliJ\ IDEA.app/Contents/MacOS`\
-   `source ~/.zshrc`
+   `source ~/.zshrc`\
+   \
+   안될 경우 Intellij toolbox 설치하면 경로추가 자동
 3. 생성한 명령어는 iterm에서 해당 폴더를 intelliJ를 이용해 프로젝트를 여는데 사용됩니다. 프로젝트를 열 때 터미널에서 idea <경로> 명령어를 이용해 열어주세요.
 
 #### 설정 추가하기
