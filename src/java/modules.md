@@ -1,25 +1,24 @@
 # Modules
 
-<details><summary>JDBC</summary>
+<details>
 
-### JDBC (Java Database Connectivity)
+<summary>JDBC</summary>
 
-> Java에서 RDBMS를 사용할 수 있게 해주는 API.
->
+#### JDBC (Java Database Connectivity)
 
-> [JDBC](https://ko.wikipedia.org/wiki/JDBC)
->
-> [JDBC driver](https://en.wikipedia.org/wiki/JDBC_driver)
->
-> [JDBC Basics](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
->
-API는 그냥 인터페이스기 때문에,
-각 DBMS 벤더에서 제공하는 JDBC Driver가 있어야 실제로 사용할 수 있다.
+Java에서 RDBMS를 사용할 수 있게 해주는 API.
 
-### Connection
+[JDBC](https://ko.wikipedia.org/wiki/JDBC)
 
-> [Establishing a Connection](https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html)
->
+[JDBC driver](https://en.wikipedia.org/wiki/JDBC\_driver)
+
+[JDBC Basics](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
+
+API는 그냥 인터페이스기 때문에, 각 DBMS 벤더에서 제공하는 JDBC Driver가 있어야 실제로 사용할 수 있다.
+
+#### Connection
+
+[Establishing a Connection](https://docs.oracle.com/javase/tutorial/jdbc/basics/connecting.html)
 
 ```java
 String url="jdbc:postgresql://localhost:5432/postgres";
@@ -35,8 +34,8 @@ String url="jdbc:postgresql://localhost:5432/postgres";
 
 → PostgreSQL용 JDBC Driver가 필요함.
 
-- [pgJDBC](https://jdbc.postgresql.org/)
-- [Maven Repository](https://mvnrepository.com/artifact/org.postgresql/postgresql)
+* [pgJDBC](https://jdbc.postgresql.org/)
+* [Maven Repository](https://mvnrepository.com/artifact/org.postgresql/postgresql)
 
 `build.gradle` 파일에 의존성 추가. 버전은 최신 버전으로 맞출 것.
 
@@ -44,10 +43,9 @@ String url="jdbc:postgresql://localhost:5432/postgres";
 implementation 'org.postgresql:postgresql:42.5.4'
 ```
 
-### Statement
+#### Statement
 
-> [Processing SQL Statements with JDBC](https://docs.oracle.com/javase/tutorial/jdbc/basics/processingsqlstatements.html)
->
+[Processing SQL Statements with JDBC](https://docs.oracle.com/javase/tutorial/jdbc/basics/processingsqlstatements.html)
 
 ```java
 Statement statement=connection.createStatement();
@@ -63,13 +61,12 @@ Statement statement=connection.createStatement();
         }
 ```
 
-### PreparedStatement
+#### PreparedStatement
 
-> [Using Prepared Statements](https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html)
->
+[Using Prepared Statements](https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html)
 
-- [기본 중 기본인 SQL Injection 공격](https://ko.wikipedia.org/wiki/SQL_삽입)
-- [Exploits of a Mom](https://xkcd.com/327/)
-- [국내 사례](https://www.google.com/search?q=뽐뿌+SQL+Injection)
+* [기본 중 기본인 SQL Injection 공격](https://ko.wikipedia.org/wiki/SQL\_%EC%82%BD%EC%9E%85)
+* [Exploits of a Mom](https://xkcd.com/327/)
+* [국내 사례](https://www.google.com/search?q=%EB%BD%90%EB%BF%8C+SQL+Injection)
 
 </details>
